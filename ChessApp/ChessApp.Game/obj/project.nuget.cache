@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "2R0iD0MMEeVK+DcvRa6NKkwbLZs9eSLFSQaqq6g1MBZq7pbFjK7Te4HsQJ5K9E6cFrxrnTEKIH4gWeuWhBw8cg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\jj\\source\\repos\\WpfMvvmPrism\\ProjManQuiz\\ChessApp\\ChessApp.Game\\ChessApp.Game.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\jj\\.nuget\\packages\\microsoft.xaml.behaviors.wpf\\1.1.31\\microsoft.xaml.behaviors.wpf.1.1.31.nupkg.sha512",
+    "C:\\Users\\jj\\.nuget\\packages\\prism.core\\8.1.97\\prism.core.8.1.97.nupkg.sha512",
+    "C:\\Users\\jj\\.nuget\\packages\\prism.wpf\\8.1.97\\prism.wpf.8.1.97.nupkg.sha512"
+  ],
+  "logs": []
+}

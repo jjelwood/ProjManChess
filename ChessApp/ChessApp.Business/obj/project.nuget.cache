@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "sZiG9MmBfNUByUYTCro6xqrSOwbnWkO/B1VbysyROImyamZ05hfdgwbI/A8vgr3L1JD/Ews4RTr3H0Yk6e81Ig==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\jj\\source\\repos\\WpfMvvmPrism\\ProjManQuiz\\ChessApp\\ChessApp.Business\\ChessApp.Business.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\jj\\.nuget\\packages\\prism.core\\8.1.97\\prism.core.8.1.97.nupkg.sha512"
+  ],
+  "logs": []
+}
