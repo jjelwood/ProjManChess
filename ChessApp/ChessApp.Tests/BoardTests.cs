@@ -58,4 +58,20 @@ public class BoardTests
         ChessBoard board = new("8/8/2P1P3/3B4/2P1P3/8/8/8", 8, 8);
         Assert.True(board.TileIsOccupied(2, 2));
     }
+
+    [Fact]
+    public void TestSetMove1()
+    {
+        ChessBoard board = new("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR", 8, 8);
+        var newBoard = ChessBoard.SetMove(board, new(new(4, 0), new(6, 0)));
+        Assert.True(board.Board != newBoard.Board);
+    }
+
+    [Fact]
+    public void TestSetMove2()
+    {
+        ChessBoard board = new("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR", 8, 8);
+        var newBoard = ChessBoard.SetMove(board, new(new(4, 0), new(6, 0)));
+        Assert.True(board.Board[6, 0]?.Position != newBoard.Board[6, 0]?.Position);
+    }
 }

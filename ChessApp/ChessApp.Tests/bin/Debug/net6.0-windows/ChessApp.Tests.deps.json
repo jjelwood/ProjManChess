@@ -1100,7 +1100,8 @@
       "xunit.runner.visualstudio/2.4.5": {},
       "ChessApp.Business/1.0.0": {
         "dependencies": {
-          "Prism.Core": "8.1.97"
+          "Prism.Core": "8.1.97",
+          "System.Runtime": "4.3.0"
         },
         "runtime": {
           "ChessApp.Business.dll": {}

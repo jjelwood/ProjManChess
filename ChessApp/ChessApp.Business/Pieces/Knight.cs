@@ -1,6 +1,7 @@
 ﻿using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,9 +19,16 @@ namespace ChessApp.Business.Pieces
         public int Moves { get; set; } = 0;
         public bool IsWhite { get; }
 
+        public string ImagePath => Path.Combine(Directory.GetCurrentDirectory(), @$"..\..\..\..\ChessApp.Assets\Pieces\anarcandy\{(IsWhite ? 'w' : 'b')}N.svg");
+
         public char Character => IsWhite ? 'N' : 'n';
 
         public Tile Position { get; set; }
+
+        public IPiece Clone()
+        {
+            return (IPiece)MemberwiseClone();
+        }
 
         public IEnumerable<Tile> GetAttackedTiles(ChessBoard board)
         {

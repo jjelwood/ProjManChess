@@ -4,6 +4,7 @@ using Prism.Commands;
 using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace ChessApp.Game.ViewModels
@@ -12,19 +13,22 @@ namespace ChessApp.Game.ViewModels
     {
         public const string boardColour1 = "#769656";
         public const string boardColour2 = "#eeeed2";
-        public BoardViewModel()
+
+        public BoardViewModel() 
         {
-            _board = new("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR", 8, 8);
+            _game = new(new("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR", 8, 8));
         }
 
-        private ChessBoard _board;
-        public ChessBoard Board
+        private Business.Game _game;
+        public Business.Game Game
         {
-            get { return _board; }
-            set { SetProperty(ref _board, value, () => RaisePropertyChanged(nameof(JaggedArrayBoard))); }
+            get { return _game; }
+            set { SetProperty(ref _game, value); }
         }
 
-        public IPiece?[][] JaggedArrayBoard => Board.GetJaggedArray();
+        public ChessBoard Board => Game.Board;
+
+        public IPiece?[][] JaggedArrayBoard => Game.Board.GetJaggedArray();
 
         private IPiece? _selectedPiece;
         public IPiece? SelectedPiece
@@ -55,18 +59,28 @@ namespace ChessApp.Game.ViewModels
             get
             {
                 BoolTilePair[][] result = new BoolTilePair[Board.Rows][];
-                var tiles = SelectedPiece?.GetMoveableTiles(Board);
-                if (tiles is null)
-                {
+
+                if (SelectedPiece is null)
                     return null;
-                }
+
+                var tiles = SelectedPiece.GetMoveableTiles(Board);
+
+                if (tiles is null)
+                    return null;
+
                 for (int i = 0; i < Board.Rows; i++)
                 {
                     result[i] = new BoolTilePair[Board.Columns];
                     for (int j = 0; j < Board.Columns; j++)
                     {
                         var tile = new Tile(i, j);
-                        result[i][j] = new BoolTilePair(tile, tiles.Contains(tile));
+                        var pos = SelectedPiece.Position;
+                        var move = new Move(tile, pos);
+
+                        var moveIsValid = Business.Game.MoveIsValid(Game.Board, Game.PlayerToMove, move);
+
+                        result[i][j] = new BoolTilePair(tile, moveIsValid);
+                        
                     }
                 }
                 return result;
@@ -88,7 +102,7 @@ namespace ChessApp.Game.ViewModels
         {
             if (SelectedPiece is null) return;
 
-            Board.MovePiece(SelectedPiece.Position, tile);
+            Game.MovePiece(new(tile, SelectedPiece.Position));
             RaisePropertyChanged(nameof(TileMoveableArray));
             RaisePropertyChanged(nameof(JaggedArrayBoard));
             RaisePropertyChanged(nameof(Board));

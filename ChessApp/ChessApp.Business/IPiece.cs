@@ -10,8 +10,10 @@ namespace ChessApp.Business
     {
         public int Moves { get; set; }
         public bool IsWhite { get; }
+        public string ImagePath { get; }
         public char Character { get; }
         public Tile Position { get; set; }
+        public IPiece Clone();
         public IEnumerable<Tile> GetAttackedTiles(ChessBoard board);
         public IEnumerable<Tile> GetMoveableTiles(ChessBoard board);
     }

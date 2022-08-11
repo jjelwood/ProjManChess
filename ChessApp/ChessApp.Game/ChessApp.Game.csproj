@@ -6,6 +6,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Prism.Wpf" Version="8.1.97" />
+    <PackageReference Include="SharpVectors" Version="1.8.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ChessApp.Business\ChessApp.Business.csproj" />

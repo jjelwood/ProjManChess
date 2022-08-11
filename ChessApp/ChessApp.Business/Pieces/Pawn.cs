@@ -1,6 +1,7 @@
 ﻿using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,13 @@ namespace ChessApp.Business.Pieces
         public bool IsWhite { get; }
         public int Direction { get; }
         public Tile Position { get; set; }
+
+        public IPiece Clone()
+        {
+            return (IPiece)MemberwiseClone();
+        }
+
+        public string ImagePath => Path.Combine(Directory.GetCurrentDirectory(), @$"..\..\..\..\ChessApp.Assets\Pieces\anarcandy\{(IsWhite ? 'w' : 'b')}P.svg");
 
         private int _moves;
         public int Moves

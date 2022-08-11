@@ -1690,7 +1690,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "Prism.Core": "8.1.97"
+          "Prism.Core": "8.1.97",
+          "System.Runtime": "4.3.0"
         },
         "compile": {
           "bin/placeholder/ChessApp.Business.dll": {}
@@ -6117,7 +6118,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }

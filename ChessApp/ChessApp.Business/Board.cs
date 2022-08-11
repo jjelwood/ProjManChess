@@ -20,6 +20,23 @@ namespace ChessApp.Business
             Columns = board.GetLength(1);
         }
 
+        public ChessBoard(ChessBoard board)
+        {
+            int width = board.Board.GetLength(0);
+            int height = board.Board.GetLength(1);
+            _board = new IPiece?[width, height];
+
+            for (int w = 0; w < width; w++)
+            {
+                for (int h = 0; h < height; h++)
+                {
+                    _board[w, h] = board.Board[w, h]?.Clone();
+                }
+            }
+            Rows = board.Board.GetLength(0);
+            Columns = board.Board.GetLength(1);
+        }
+
         public int Rows { get; set; }
 
         public int Columns { get; set; }
@@ -163,6 +180,45 @@ namespace ChessApp.Business
             this[from]!.Position = to;
             this[to] = this[from];
             this[from] = null;
+        }
+
+        public static ChessBoard SetMove(ChessBoard board, Tile from, Tile to)
+        {
+            ChessBoard newBoard = new(board);
+            newBoard.MovePiece(from, to);
+            return newBoard;
+        }
+
+        public static ChessBoard SetMove(ChessBoard board, Move move)
+        {
+            ChessBoard newBoard = new(board);
+            newBoard.MovePiece(move);
+            return newBoard;
+        }
+
+        public void MovePiece(Move move)
+        {
+            if (!TileIsOccupied(move.From))
+            {
+                throw new ArgumentException("No piece at that location", nameof(move));
+            }
+
+            this[move.From]!.Moves++;
+            this[move.From]!.Position = move.To;
+            this[move.To] = this[move.From];
+            this[move.From] = null;
+        }
+
+        public static Tile GetKingLocation(ChessBoard board, int Player)
+        {
+            foreach (IPiece? piece in board.Board)
+            {
+                if (piece is King && (piece.IsWhite ? 1 : 0) == Player)
+                {
+                    return piece.Position;
+                }
+            }
+            throw new Exception("There is no king of the specified colour on this board");
         }
 
         public static string GetMoveableTilesRepresentation(IPiece piece, ChessBoard board, Tile tile)

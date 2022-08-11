@@ -73,7 +73,8 @@ public class MovementTests
 
     [Theory]
     [InlineData("N7/8/8/8/8/8/8/8", 0, 0, 2)]
-    
+    [InlineData("1N6/8/8/8/8/8/8/8", 0, 1, 3)]
+
     public void KnightMovementTest(string FEN, int row, int column, int expectedMoves)
     {
         ExpectedMoves(FEN, row, column, expectedMoves);

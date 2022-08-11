@@ -29,3 +29,11 @@ C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp\bin\Debug\ne
 C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp\bin\Debug\net6.0-windows\ChessApp.Game.dll
 C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp\bin\Debug\net6.0-windows\ChessApp.Game.pdb
 C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp\bin\Debug\net6.0-windows\ChessApp.Business.pdb
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp\bin\Debug\net6.0-windows\SharpVectors.Converters.Wpf.dll
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp\bin\Debug\net6.0-windows\SharpVectors.Core.dll
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp\bin\Debug\net6.0-windows\SharpVectors.Css.dll
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp\bin\Debug\net6.0-windows\SharpVectors.Dom.dll
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp\bin\Debug\net6.0-windows\SharpVectors.Model.dll
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp\bin\Debug\net6.0-windows\SharpVectors.Rendering.Gdi.dll
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp\bin\Debug\net6.0-windows\SharpVectors.Rendering.Wpf.dll
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp\bin\Debug\net6.0-windows\SharpVectors.Runtime.Wpf.dll
