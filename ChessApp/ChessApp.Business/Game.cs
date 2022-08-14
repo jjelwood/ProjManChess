@@ -34,7 +34,7 @@ namespace ChessApp.Business
         public static bool MoveIsValid(ChessBoard board, int playerToMove, Move move)
         {
             // If no piece a from location then move is invalid
-            if (board.TileIsOccupied(move.From))
+            if (!board.TileIsOccupied(move.From))
             {
                 return false;
             }

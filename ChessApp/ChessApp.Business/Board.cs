@@ -37,6 +37,11 @@ namespace ChessApp.Business
             Columns = board.Board.GetLength(1);
         }
 
+        public bool WhiteCanCastleKingSide => CanCastle(1, 1);
+        public bool WhiteCanCastleQueenSide => CanCastle(1, -1);
+        public bool BlackCanCastleKingSide => CanCastle(0, 1);
+        public bool BlackCanCastleQueenSide => CanCastle(0, -1);
+
         public int Rows { get; set; }
 
         public int Columns { get; set; }
@@ -68,6 +73,27 @@ namespace ChessApp.Business
                 }
             }
             _board = board;
+        }
+
+        public bool CanCastle(int player, int direction)
+        {
+            var king = GetKing(this, player);
+            var rook = GetRookOnSideOfKing(this, player, direction);
+
+            if (rook is null || king.Moves != 0 || rook.Moves != 0)
+            {
+                return false;
+            }
+
+            for (int i = king.Position.Column + direction; i != rook.Position.Column; i += direction)
+            {
+                if (TileIsOccupied(new Tile(king.Position.Row, i)))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         public static IPiece GetPiece(char pieceChar, Tile position)
@@ -154,21 +180,6 @@ namespace ChessApp.Business
             return Board[row, column]!.IsWhite;
         }
 
-        public IPiece?[][] GetJaggedArray()
-        {
-            IPiece?[][] toReturn = new IPiece?[Board.GetLength(0)][];
-            for (int i = 0; i < Board.GetLength(0); i++)
-            {
-                IPiece?[] row = new IPiece?[Board.GetLength(1)];
-                for (int j = 0; j < Board.GetLength(1); j++)
-                {
-                    row[j] = Board[i, j];
-                }
-                toReturn[i] = row;
-            }
-            return toReturn;
-        }
-
         public void MovePiece(Tile from, Tile to)
         {
             if (!TileIsOccupied(from))
@@ -209,16 +220,48 @@ namespace ChessApp.Business
             this[move.From] = null;
         }
 
-        public static Tile GetKingLocation(ChessBoard board, int Player)
+        public static Tile GetKingLocation(ChessBoard board, int player)
         {
             foreach (IPiece? piece in board.Board)
             {
-                if (piece is King && (piece.IsWhite ? 1 : 0) == Player)
+                if (piece is King && (piece.IsWhite ? 1 : 0) == player)
                 {
                     return piece.Position;
                 }
             }
             throw new Exception("There is no king of the specified colour on this board");
+        }
+
+        public static King GetKing(ChessBoard board, int player)
+        {
+            foreach (IPiece? piece in board.Board)
+            {
+                if (piece is King king && (piece.IsWhite ? 1 : 0) == player)
+                {
+                    return king;
+                }
+            }
+            throw new Exception("There is no king of the specified colour on this board");
+        }
+
+        /// <summary>
+        /// Finds the rook on a specifed side on the same row of a player's king
+        /// </summary>
+        /// <param name="board">Board to search</param>
+        /// <param name="player">Player whose rook</param>
+        /// <param name="direction">Direction to search</param>
+        /// <returns>Rook if piece exists else null</returns>
+        public static Rook? GetRookOnSideOfKing(ChessBoard board, int player, int direction)
+        {
+            Tile kingPos = GetKingLocation(board, player);
+            for (int i = kingPos.Column; 0 <= i && i <= board.Columns; i += direction)
+            {
+                if (board.Board[kingPos.Row, i] is Rook rook)
+                {
+                    return rook;
+                }
+            }
+            return null;
         }
 
         public static string GetMoveableTilesRepresentation(IPiece piece, ChessBoard board, Tile tile)

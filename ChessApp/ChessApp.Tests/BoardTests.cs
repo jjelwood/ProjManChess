@@ -74,4 +74,14 @@ public class BoardTests
         var newBoard = ChessBoard.SetMove(board, new(new(4, 0), new(6, 0)));
         Assert.True(board.Board[6, 0]?.Position != newBoard.Board[6, 0]?.Position);
     }
+
+    [Fact]
+    public void TestCanCastle()
+    {
+        ChessBoard board = new("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR", 8, 8);
+        board.MovePiece(new(7, 6), new(5, 5));
+        board.MovePiece(new(6, 4), new(4, 4));
+        board.MovePiece(new(7, 5), new(6, 4));
+        Assert.True(board.CanCastle(1, 1));
+    }
 }

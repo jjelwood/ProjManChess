@@ -11,8 +11,9 @@ namespace ChessApp.Game.ViewModels
 {
     public class BoardViewModel : BindableBase
     {
-        public const string boardColour1 = "#769656";
-        public const string boardColour2 = "#eeeed2";
+        public const string boardColour1 = "#f07373";
+        public const string boardColour2 = "#ebecba";
+        public bool isFlipped = true;
 
         public BoardViewModel() 
         {
@@ -28,7 +29,25 @@ namespace ChessApp.Game.ViewModels
 
         public ChessBoard Board => Game.Board;
 
-        public IPiece?[][] JaggedArrayBoard => Game.Board.GetJaggedArray();
+        public IPiece?[][] JaggedArrayBoard
+        {
+            get
+            {
+                IPiece?[][] toReturn = new IPiece?[Board.Rows][];
+                for (int i = 0; i < Board.Rows; i++)
+                {
+                    IPiece?[] row = new IPiece?[Board.Columns];
+                    for (int j = 0; j < Board.Columns; j++)
+                    {
+                        var column = isFlipped ? j : Board.Columns - 1 - j;
+                        row[column] = Board.Board[i, j];
+                    }
+                    toReturn[isFlipped ? i : Board.Rows - 1 - i] = row;
+                }
+                return toReturn;
+            }
+        }
+
 
         private IPiece? _selectedPiece;
         public IPiece? SelectedPiece
@@ -44,10 +63,12 @@ namespace ChessApp.Game.ViewModels
                 string[][] result = new string[Board.Rows][];
                 for (int i = 0; i < Board.Rows; i++)
                 {
-                    result[i] = new string[Board.Columns];
+                    var row = isFlipped ? i : Board.Rows - 1 - i;
+                    result[row] = new string[Board.Columns];
                     for (int j = 0; j < Board.Columns; j++)
                     {
-                        result[i][j] = i % 2 == 0 ^ j % 2 == 0 ? boardColour1 : boardColour2;
+                        var column = isFlipped ? j : Board.Columns - 1 - j;
+                        result[row][column] = i % 2 == 0 ^ j % 2 == 0 ? boardColour1 : boardColour2;
                     }
                 }
                 return result;
@@ -70,17 +91,18 @@ namespace ChessApp.Game.ViewModels
 
                 for (int i = 0; i < Board.Rows; i++)
                 {
-                    result[i] = new BoolTilePair[Board.Columns];
+                    var row = isFlipped ? i : Board.Rows - 1 - i;
+                    result[row] = new BoolTilePair[Board.Columns];
                     for (int j = 0; j < Board.Columns; j++)
                     {
+                        var column = isFlipped ? j : Board.Columns - 1 - j;
                         var tile = new Tile(i, j);
                         var pos = SelectedPiece.Position;
                         var move = new Move(tile, pos);
 
                         var moveIsValid = Business.Game.MoveIsValid(Game.Board, Game.PlayerToMove, move);
 
-                        result[i][j] = new BoolTilePair(tile, moveIsValid);
-                        
+                        result[row][column] = new BoolTilePair(tile, moveIsValid);
                     }
                 }
                 return result;
@@ -103,9 +125,11 @@ namespace ChessApp.Game.ViewModels
             if (SelectedPiece is null) return;
 
             Game.MovePiece(new(tile, SelectedPiece.Position));
+            isFlipped = !isFlipped;
+
             RaisePropertyChanged(nameof(TileMoveableArray));
             RaisePropertyChanged(nameof(JaggedArrayBoard));
-            RaisePropertyChanged(nameof(Board));
+            RaisePropertyChanged(nameof(BoardColours));
             SelectedPiece = null;
         }
     }

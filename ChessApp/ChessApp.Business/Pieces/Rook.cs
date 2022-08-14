@@ -14,7 +14,7 @@ namespace ChessApp.Business.Pieces
         public bool IsWhite { get; }
         public Tile Position { get; set; }
 
-        public string ImagePath => Path.Combine(Directory.GetCurrentDirectory(), @$"..\..\..\..\ChessApp.Assets\Pieces\anarcandy\{(IsWhite ? 'w' : 'b')}R.svg");
+        public string ImagePath => Path.Combine(Directory.GetCurrentDirectory(), @$"..\..\..\..\ChessApp.Assets\Pieces\{PieceSprites.PieceSpriteName}\{(IsWhite ? 'w' : 'b')}R.svg");
 
         public char Character => IsWhite ? 'R' : 'r';
 

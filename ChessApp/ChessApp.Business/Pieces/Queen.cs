@@ -13,7 +13,7 @@ namespace ChessApp.Business.Pieces
         public int Moves {get; set;} = 0;
         public bool IsWhite { get; }
 
-        public string ImagePath => Path.Combine(Directory.GetCurrentDirectory(), @$"..\..\..\..\ChessApp.Assets\Pieces\anarcandy\{(IsWhite ? 'w' : 'b')}Q.svg");
+        public string ImagePath => Path.Combine(Directory.GetCurrentDirectory(), @$"..\..\..\..\ChessApp.Assets\Pieces\{PieceSprites.PieceSpriteName}\{(IsWhite ? 'w' : 'b')}Q.svg");
         public char Character => IsWhite ? 'Q' : 'q';
 
         public IPiece Clone()
