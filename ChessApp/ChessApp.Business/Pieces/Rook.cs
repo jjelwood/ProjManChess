@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace ChessApp.Business.Pieces
 {
+    /// <summary>
+    /// Rook piece class
+    /// </summary>
     public class Rook : BindableBase, IPiece
     {
         public int Moves { get; set; } = 0;

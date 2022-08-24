@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace ChessApp.Business.Pieces
 {
+    /// <summary>
+    /// Bishop piece
+    /// </summary>
     public class Bishop : BindableBase, IPiece
     {
         public Bishop(PieceColour colour, Tile position)

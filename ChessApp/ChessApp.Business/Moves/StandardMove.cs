@@ -7,39 +7,24 @@ using System.Threading.Tasks;
 
 namespace ChessApp.Business.Moves
 {
+    /// <summary>
+    /// Move class that represents a standard move, where a piece moves from one square to another
+    /// </summary>
     public class StandardMove : IMove
     {
         public StandardMove(Tile from, Tile to)
         {
-            _from = from;
-            _to = to;
+            From = from;
+            To = to;
             Tile = to;
         }
 
-        private Tile _from;
-
-        public Tile From
-        {
-            get { return _from; }
-            set { _from = value; }
-        }
-
-        private Tile _to;
-
-        public Tile To
-        {
-            get { return _to; }
-            set { _to = value; }
-        }
+        public Tile From { get; set; }
+        public Tile To { get; set; }
 
         public Tile Tile { get; }
         public virtual void DoMove(ChessBoard board)
         {
-            if (!board.TileIsOccupied(From))
-            {
-                throw new MoveInvalidException("No piece at that location");
-            }
-
             board[From]!.Moves++;
             board[From]!.Position = To;
             board[To] = board[From];

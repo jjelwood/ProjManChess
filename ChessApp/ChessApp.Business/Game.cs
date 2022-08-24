@@ -5,9 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using ChessApp.Business.Moves;
+using ChessApp.Business.Exceptions;
 
 namespace ChessApp.Business
 {
+    /// <summary>
+    /// Class respresenting a game of chess
+    /// </summary>
     public class Game
     {
         private readonly ChessBoard _board;
@@ -17,6 +21,9 @@ namespace ChessApp.Business
             _board = board;
         }
 
+        /// <summary>
+        /// The board of the game
+        /// </summary>
         public ChessBoard Board
         {
             get { return _board; }
@@ -24,14 +31,27 @@ namespace ChessApp.Business
 
         private int _moves = 0;
 
+        /// <summary>
+        /// Amount of moves played
+        /// </summary>
         public int Moves
         {
             get { return _moves; }
             set { _moves = value; }
         }
 
+        /// <summary>
+        /// The current player whose turn it is
+        /// </summary>
         public PieceColour PlayerToMove => (PieceColour)((Moves + 1) % 2);
 
+        /// <summary>
+        /// Determines whether a move is valid
+        /// </summary>
+        /// <param name="board">Board the move is being played on</param>
+        /// <param name="playerToMove">Player whose turn it is</param>
+        /// <param name="move">The move to validate</param>
+        /// <returns>Whether the move is valid on the given board</returns>
         public static bool MoveIsValid(ChessBoard board, PieceColour playerToMove, IMove move)
         {
             if (move is DoublePawnMove doublePawnMove)
@@ -50,9 +70,16 @@ namespace ChessApp.Business
             {
                 return true;
             }
-            throw new NotImplementedException();
+            return true;
         }
 
+        /// <summary>
+        /// Determines whether a double pawn move is valid
+        /// </summary>
+        /// <param name="board">Board the move is being played on</param>
+        /// <param name="playerToMove">Player whose turn it is</param>
+        /// <param name="move">The move to validate</param>
+        /// <returns>Whether the dobule pawn move is valid on the given board</returns>
         private static bool DoublePawnMoveIsValid(ChessBoard board, PieceColour playerToMove, DoublePawnMove move)
         {
             // If no piece a from location then move is invalid
@@ -74,6 +101,13 @@ namespace ChessApp.Business
             return true;
         }
 
+        /// <summary>
+        /// Determines whether a standard move is valid
+        /// </summary>
+        /// <param name="board">Board the move is being played on</param>
+        /// <param name="playerToMove">Player whose turn it is</param>
+        /// <param name="move">The move to validate</param>
+        /// <returns>Whether the standard move is valid on the given board</returns>
         public static bool StandardMoveIsValid(ChessBoard board, PieceColour playerToMove, StandardMove move)
         {
             // If no piece a from location then move is invalid
@@ -97,11 +131,23 @@ namespace ChessApp.Business
             return true;
         }
 
-        public static IEnumerable<IMove> GetValidMovesForPiece(IPiece piece, ChessBoard board, PieceColour player)
+        /// <summary>
+        /// Gets all valid moves of a piece
+        /// </summary>
+        /// <param name="piece">The piece to check</param>
+        /// <returns>An enumerable of all valid moves for the piece</returns>
+        public IEnumerable<IMove> GetValidMovesForPiece(IPiece piece)
         {
-            return piece.GetMoves(board).Where(m => MoveIsValid(board, player, m));
+            return piece.GetMoves(Board).Where(m => MoveIsValid(Board, PlayerToMove, m));
         }
 
+        /// <summary>
+        /// Determines whether a player is in check after a move
+        /// </summary>
+        /// <param name="board">The board being checked</param>
+        /// <param name="player">The player to check</param>
+        /// <param name="move">The move being played</param>
+        /// <returns>Whether the specified player is in check</returns>
         public static bool PlayerIsCheckedAfterMove(ChessBoard board, PieceColour player, IMove move)
         {
             var newBoard = ChessBoard.SetMove(board, move);
@@ -112,31 +158,35 @@ namespace ChessApp.Business
             return false;
         }
 
-        public static IEnumerable<IMove> AllMovesForPlayer(ChessBoard board, PieceColour player)
+        /// <summary>
+        /// Gets all moves for a player on a board
+        /// </summary>
+        /// <param name="board">The board being checked</param>
+        /// <param name="player">The player to check</param>
+        /// <returns>An enumerable of all the moves the player can play</returns>
+        public IEnumerable<IMove> AllMovesForPlayer(PieceColour player)
         {
-            List<IMove> result = new();
-            foreach (var piece in board.Board)
+            IEnumerable<IMove> result = Enumerable.Empty<IMove>();
+            foreach (var piece in Board.Board)
             {
                 if (piece is null)
                     continue;
 
-                foreach (Tile tile in piece.GetMoveableTiles(board))
-                {
-                    var move = new StandardMove(tile, piece.Position);
-                    if (MoveIsValid(board, player, move))
-                    {
-                        result.Add(move);
-                    }
-                }
+                result = result.Union(GetValidMovesForPiece(piece));
             }
             return result;
         }
 
-        public void MovePiece(IMove move)
+        /// <summary>
+        /// Plays a move
+        /// </summary>
+        /// <param name="move">Move to be played</param>
+        /// <exception cref="MoveInvalidException">The passed move was invalid</exception>
+        public void PlayMove(IMove move)
         {
             if (!MoveIsValid(Board, PlayerToMove, move))
             {
-                throw new ArgumentException("Move invalid");
+                throw new MoveInvalidException("Move invalid");
             }
 
             move.DoMove(Board);

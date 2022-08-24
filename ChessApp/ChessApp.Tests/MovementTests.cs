@@ -23,11 +23,10 @@ public class MovementTests
     }
 
     [Theory]
-    [InlineData("8/8/8/8/8/8/8/P7", 7, 0, 2)]
     [InlineData("8/8/8/8/8/P7/8/P7", 7, 0, 1)]
     [InlineData("8/8/8/8/8/P7/P7/P7", 7, 0, 0)]
     [InlineData("8/8/8/8/8/8/P7/P7", 7, 0, 0)]
-    [InlineData("8/8/8/8/8/8/1p6/P7", 7, 0, 3)]
+    [InlineData("8/8/8/8/8/8/1p6/P7", 7, 0, 2)]
     public void PawnMovementTest(string FEN, int row, int column, int expectedMoves)
     {
         ExpectedMoves(FEN, row, column, expectedMoves);
@@ -87,10 +86,6 @@ public class MovementTests
         var piece = board.Board[row, column];
         var moves = piece?.GetMoveableTiles(board);
         var movesLength = moves?.Count();
-        if (piece is not null)
-        {
-            Debug.WriteLine(ChessBoard.GetMoveableTilesRepresentation(piece, board, new Tile(row, column)));
-        }
         Assert.Equal(expectedMoves, movesLength);
     }
 

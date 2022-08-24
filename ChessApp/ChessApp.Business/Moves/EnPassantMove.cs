@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ChessApp.Business.Moves
 {
+    /// <summary>
+    /// Move class that represents an en-passant capture
+    /// </summary>
     public class EnPassantMove : IMove
     {
         public EnPassantMove(Tile from, Tile to, Tile capturingTile)

@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace ChessApp.Business.Pieces
 {
+    /// <summary>
+    /// Knight class
+    /// </summary>
     public class Knight : BindableBase, IPiece
     {
         public Knight(PieceColour colour, Tile position)

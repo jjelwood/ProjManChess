@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ChessApp.Business
 {
+    /// <summary>
+    /// Static class that determines what sprites are used in the program
+    /// </summary>
     public static class Sprites
     {
         public static string PieceSpriteName => spriteNames[1];

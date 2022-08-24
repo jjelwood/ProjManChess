@@ -23,6 +23,9 @@ namespace ChessApp.Game.ViewModels
         }
 
         private Business.Game _game;
+        /// <summary>
+        /// The game being played
+        /// </summary>
         public Business.Game Game
         {
             get { return _game; }
@@ -31,6 +34,10 @@ namespace ChessApp.Game.ViewModels
 
         public ChessBoard Board => Game.Board;
 
+        /// <summary>
+        /// The board in a jagged array form so it can be bound to,
+        /// this is necessary as 2-d arrays can't be bound to in WPF
+        /// </summary>
         public IPiece?[][] JaggedArrayBoard
         {
             get
@@ -52,12 +59,18 @@ namespace ChessApp.Game.ViewModels
 
 
         private IPiece? _selectedPiece;
+        /// <summary>
+        /// The currently selected piece
+        /// </summary>
         public IPiece? SelectedPiece
         {
             get { return _selectedPiece; }
             set { SetProperty(ref _selectedPiece, value, () => RaisePropertyChanged(nameof(MoveArray))); }
         }
 
+        /// <summary>
+        /// 2-d array of hex colours for binding to on the board squares
+        /// </summary>
         public string[][] BoardColours
         {
             get
@@ -77,6 +90,11 @@ namespace ChessApp.Game.ViewModels
             }
         }
 
+        /// <summary>
+        /// 2-d array for showing tiles the selected piece can move to.
+        /// Contains a bool of whether the piece can move to that tile and 
+        /// a move which is the move corresponding to moving to that tile
+        /// </summary>
         public MoveVisibiltyPair[][]? MoveArray
         {
             get
@@ -86,7 +104,7 @@ namespace ChessApp.Game.ViewModels
                 if (SelectedPiece is null)
                     return null;
 
-                var moves = Business.Game.GetValidMovesForPiece(SelectedPiece, Board, Game.PlayerToMove);
+                var moves = Game.GetValidMovesForPiece(SelectedPiece);
 
                 if (moves is null)
                     return null;
@@ -130,7 +148,7 @@ namespace ChessApp.Game.ViewModels
         {
             if (SelectedPiece is null) return;
 
-            Game.MovePiece(move);
+            Game.PlayMove(move);
             isFlipped = !isFlipped;
 
             RaisePropertyChanged(nameof(MoveArray));

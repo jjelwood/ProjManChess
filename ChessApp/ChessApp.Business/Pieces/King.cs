@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace ChessApp.Business.Pieces
 {
+    /// <summary>
+    /// King piece class
+    /// </summary>
     public class King : BindableBase, IPiece
     {
         public King(PieceColour colour, Tile position)

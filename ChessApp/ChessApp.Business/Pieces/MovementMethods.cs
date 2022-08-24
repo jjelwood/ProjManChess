@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace ChessApp.Business.Pieces
 {
+    /// <summary>
+    /// Helpful methods related to piece movement used throughout multiple pieces
+    /// </summary>
     public static class MovementMethods
     {
         /// <summary>

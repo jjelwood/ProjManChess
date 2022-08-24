@@ -9,7 +9,10 @@ using System.Threading.Tasks;
 
 namespace ChessApp.Business
 {
-    public class ChessBoard : BindableBase
+    /// <summary>
+    /// Class representing a chess board
+    /// </summary>
+    public class ChessBoard
     {
         private IPiece?[,] _board;
 
@@ -162,7 +165,7 @@ namespace ChessApp.Business
         public IPiece?[,] Board
         {
             get { return _board; }
-            set { SetProperty(ref _board, value); }
+            set { _board = value; }
         }
 
         /// <summary>
@@ -209,19 +212,25 @@ namespace ChessApp.Business
             return Board[tile.Row, tile.Column]!.Colour == PieceColour.White;
         }
 
+        /// <summary>
+        /// Moves a piece from one tile to another without checking if the move is valid
+        /// </summary>
+        /// <param name="from">Tile the piece is being moved from</param>
+        /// <param name="to">Tile the piece is being moved to</param>
         public void MovePiece(Tile from, Tile to)
         {
-            if (!TileIsOccupied(from))
-            {
-                throw new ArgumentException("No piece at that location", nameof(from));
-            }
-
             this[from]!.Moves++;
             this[from]!.Position = to;
             this[to] = this[from];
             this[from] = null;
         }
 
+        /// <summary>
+        /// Returns a copy of the board with a move played on it
+        /// </summary>
+        /// <param name="board">Board the move is being played on</param>
+        /// <param name="move">Move to be played</param>
+        /// <returns>Copy of the original board with a move played on it</returns>
         public static ChessBoard SetMove(ChessBoard board, IMove move)
         {
             ChessBoard newBoard = new(board);
@@ -229,18 +238,13 @@ namespace ChessApp.Business
             return newBoard;
         }
 
-        public static Tile GetKingLocation(ChessBoard board, PieceColour player)
-        {
-            foreach (IPiece? piece in board.Board)
-            {
-                if (piece is King && (piece.Colour) == player)
-                {
-                    return piece.Position;
-                }
-            }
-            throw new Exception("There is no king of the specified colour on this board");
-        }
-
+        /// <summary>
+        /// Gets the king of the player on the board
+        /// </summary>
+        /// <param name="board">The board to search</param>
+        /// <param name="player">The player whose king to look for</param>
+        /// <returns>The given player's king</returns>
+        /// <exception cref="Exception">No kinf found on the board</exception>
         public static King GetKing(ChessBoard board, PieceColour player)
         {
             foreach (IPiece? piece in board.Board)
@@ -251,6 +255,18 @@ namespace ChessApp.Business
                 }
             }
             throw new Exception("There is no king of the specified colour on this board");
+        }
+
+        /// <summary>
+        /// Returns the tile that the player's king is on
+        /// </summary>
+        /// <param name="board">The board to search</param>
+        /// <param name="player">The player whose king to look for</param>
+        /// <returns>The location of the player's king</returns>
+        /// <exception cref="Exception">No king found on the board</exception>
+        public static Tile GetKingLocation(ChessBoard board, PieceColour player)
+        {
+            return GetKing(board, player).Position;
         }
 
         /// <summary>
@@ -273,37 +289,16 @@ namespace ChessApp.Business
             return null;
         }
 
-        public static string GetMoveableTilesRepresentation(IPiece piece, ChessBoard board, Tile tile)
-        {
-            var moves = piece.GetMoveableTiles(board);
-            string toReturn = "";
-            for (int i = 0; i < board.Board.GetLength(0); i++)
-            {
-                for (int j = 0; j < board.Board.GetLength(1); j++)
-                {
-                    if (moves.Contains(new Tile(i, j))) {
-                        toReturn += 'O';
-                    }
-                    else if (new Tile(i, j) == tile)
-                    {
-                        toReturn += piece.Character;
-                    }
-                    else
-                    {
-                        toReturn += ' ';
-                    }
-                }
-                toReturn += '\n';
-            }
-            return toReturn;
-        }
-
         public IPiece? this[Tile tile]
         {
             get { return Board[tile.Row, tile.Column]; }
             set { Board[tile.Row, tile.Column] = value; }
         }
 
+        /// <summary>
+        /// Gets a string representation of the board
+        /// </summary>
+        /// <returns>A string representation of the board</returns>
         public override string ToString()
         {
             string toReturn = "";

@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace ChessApp.Business.Pieces
 {
+    /// <summary>
+    /// Pawn piece class
+    /// </summary>
     public class Pawn : BindableBase, IPiece
     {
         public Pawn(PieceColour colour, Tile position)
@@ -19,8 +22,12 @@ namespace ChessApp.Business.Pieces
         }
 
         public PieceColour Colour { get; }
-        public int Direction { get; }
         public Tile Position { get; set; }
+
+        /// <summary>
+        /// The direction the pawn moves in
+        /// </summary>
+        public int Direction { get; }
 
         public IPiece Clone()
         {
@@ -74,6 +81,11 @@ namespace ChessApp.Business.Pieces
             return tiles.Where(tile => tile.IsOnBoard(board));
         }
 
+        /// <summary>
+        /// Gets any double pawn moves the pawn can make
+        /// </summary>
+        /// <param name="board">The board the pawn is on</param>
+        /// <returns>An IEnumerable containing any double pawn moves the pawn can make</returns>
         public IEnumerable<DoublePawnMove> GetDoublePawnMoves(ChessBoard board)
         {
             var moves = new List<DoublePawnMove>();
@@ -86,6 +98,11 @@ namespace ChessApp.Business.Pieces
             return moves;
         }
 
+        /// <summary>
+        /// Gets any en-passant moves the piece can make
+        /// </summary>
+        /// <param name="board"></param>
+        /// <returns></returns>
         public IEnumerable<EnPassantMove> GetEnPassantMoves(ChessBoard board)
         {
             if (!board.EnPassantSquares.Any())
