@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace ChessApp.Business
 {
-    public record Move(Tile To, Tile From)
+    public interface IMove
     {
+        public void DoMove(ChessBoard board);
+        public Tile Tile { get; }
     }
 }

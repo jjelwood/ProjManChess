@@ -17,3 +17,5 @@ C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp.Game\obj\Deb
 C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp.Game\obj\Debug\net6.0-windows\refint\ChessApp.Game.dll
 C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp.Game\obj\Debug\net6.0-windows\ChessApp.Game.pdb
 C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp.Game\obj\Debug\net6.0-windows\ref\ChessApp.Game.dll
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp.Game\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp.Game\obj\Debug\net6.0-windows\ChessApp.Game_MarkupCompile.lref

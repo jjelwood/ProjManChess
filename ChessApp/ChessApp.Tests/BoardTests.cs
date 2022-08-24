@@ -1,4 +1,5 @@
 ﻿using ChessApp.Business;
+using ChessApp.Business.Moves;
 using ChessApp.Business.Pieces;
 using System;
 using System.Collections.Generic;
@@ -63,7 +64,7 @@ public class BoardTests
     public void TestSetMove1()
     {
         ChessBoard board = new("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR", 8, 8);
-        var newBoard = ChessBoard.SetMove(board, new(new(4, 0), new(6, 0)));
+        var newBoard = ChessBoard.SetMove(board, new StandardMove(new(6, 0), new(4, 0)));
         Assert.True(board.Board != newBoard.Board);
     }
 
@@ -71,7 +72,7 @@ public class BoardTests
     public void TestSetMove2()
     {
         ChessBoard board = new("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR", 8, 8);
-        var newBoard = ChessBoard.SetMove(board, new(new(4, 0), new(6, 0)));
+        var newBoard = ChessBoard.SetMove(board, new StandardMove(new(6, 0), new(4, 0)));
         Assert.True(board.Board[6, 0]?.Position != newBoard.Board[6, 0]?.Position);
     }
 

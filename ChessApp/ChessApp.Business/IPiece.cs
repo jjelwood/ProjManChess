@@ -16,5 +16,6 @@ namespace ChessApp.Business
         public IPiece Clone();
         public IEnumerable<Tile> GetAttackedTiles(ChessBoard board);
         public IEnumerable<Tile> GetMoveableTiles(ChessBoard board);
+        public IEnumerable<IMove> GetMoves(ChessBoard board);
     }
 }

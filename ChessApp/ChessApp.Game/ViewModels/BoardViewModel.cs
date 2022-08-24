@@ -1,4 +1,5 @@
 ﻿using ChessApp.Business;
+using ChessApp.Business.Moves;
 using ChessApp.Business.Pieces;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -6,16 +7,17 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Windows;
 
 namespace ChessApp.Game.ViewModels
 {
     public class BoardViewModel : BindableBase
     {
-        public const string boardColour1 = "#f07373";
-        public const string boardColour2 = "#ebecba";
+        public string boardColour1 = Sprites.BoardTheme.BoardColourOne;
+        public string boardColour2 = Sprites.BoardTheme.BoardColourTwo;
         public bool isFlipped = true;
 
-        public BoardViewModel() 
+        public BoardViewModel()
         {
             _game = new(new("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR", 8, 8));
         }
@@ -53,7 +55,7 @@ namespace ChessApp.Game.ViewModels
         public IPiece? SelectedPiece
         {
             get { return _selectedPiece; }
-            set { SetProperty(ref _selectedPiece, value, () => RaisePropertyChanged(nameof(TileMoveableArray))); }
+            set { SetProperty(ref _selectedPiece, value, () => RaisePropertyChanged(nameof(MoveArray))); }
         }
 
         public string[][] BoardColours
@@ -75,36 +77,40 @@ namespace ChessApp.Game.ViewModels
             }
         }
 
-        public BoolTilePair[][]? TileMoveableArray
+        public MoveVisibiltyPair[][]? MoveArray
         {
             get
             {
-                BoolTilePair[][] result = new BoolTilePair[Board.Rows][];
+                MoveVisibiltyPair[][] result = new MoveVisibiltyPair[Board.Rows][];
 
                 if (SelectedPiece is null)
                     return null;
 
-                var tiles = SelectedPiece.GetMoveableTiles(Board);
+                var moves = Business.Game.GetValidMovesForPiece(SelectedPiece, Board, Game.PlayerToMove);
 
-                if (tiles is null)
+                if (moves is null)
                     return null;
 
                 for (int i = 0; i < Board.Rows; i++)
                 {
-                    var row = isFlipped ? i : Board.Rows - 1 - i;
-                    result[row] = new BoolTilePair[Board.Columns];
+                    result[i] = new MoveVisibiltyPair[Board.Columns];
                     for (int j = 0; j < Board.Columns; j++)
                     {
-                        var column = isFlipped ? j : Board.Columns - 1 - j;
-                        var tile = new Tile(i, j);
-                        var pos = SelectedPiece.Position;
-                        var move = new Move(tile, pos);
-
-                        var moveIsValid = Business.Game.MoveIsValid(Game.Board, Game.PlayerToMove, move);
-
-                        result[row][column] = new BoolTilePair(tile, moveIsValid);
+                        result[i][j] = new(null, Visibility.Collapsed);
                     }
                 }
+
+                foreach (var move in moves)
+                {
+                    var tile = move.Tile;
+
+                    var row = isFlipped ? tile.Row : Board.Rows - 1 - tile.Row;
+                    var column = isFlipped ? tile.Column : Board.Rows - 1 - tile.Column;
+
+                    result[row][column].Move = move;
+                    result[row][column].Visibility = Visibility.Visible;
+                }
+
                 return result;
             }
         }
@@ -117,32 +123,31 @@ namespace ChessApp.Game.ViewModels
             SelectedPiece = newSelectedPiece;
         }
 
-        private DelegateCommand<Tile> _movePiece;
-        public DelegateCommand<Tile> MovePiece => _movePiece ??= new DelegateCommand<Tile>(ExecuteMovePiece);
+        private DelegateCommand<IMove> _movePiece;
+        public DelegateCommand<IMove> MovePiece => _movePiece ??= new DelegateCommand<IMove>(ExecuteMovePiece);
 
-        void ExecuteMovePiece(Tile tile)
+        void ExecuteMovePiece(IMove move)
         {
             if (SelectedPiece is null) return;
 
-            Game.MovePiece(new(tile, SelectedPiece.Position));
+            Game.MovePiece(move);
             isFlipped = !isFlipped;
 
-            RaisePropertyChanged(nameof(TileMoveableArray));
+            RaisePropertyChanged(nameof(MoveArray));
             RaisePropertyChanged(nameof(JaggedArrayBoard));
             RaisePropertyChanged(nameof(BoardColours));
             SelectedPiece = null;
         }
     }
 
-    public class BoolTilePair
+    public class MoveVisibiltyPair
     {
-        public bool Boolean { get; set; }
-        public Tile Tile { get; set; }
-
-        public BoolTilePair(Tile tile, bool boolean)
+        public MoveVisibiltyPair(IMove? move, Visibility visibilty)
         {
-            Tile = tile;
-            Boolean = boolean;
+            Move = move;
+            Visibility = visibilty;
         }
+        public IMove? Move { get; set; }
+        public Visibility Visibility { get; set; }
     }
 }

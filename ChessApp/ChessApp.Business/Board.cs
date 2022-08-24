@@ -46,6 +46,8 @@ namespace ChessApp.Business
 
         public int Columns { get; set; }
 
+        public List<(Tile Tile, int Timer)> EnPassantSquares { get; set; } = new();
+
         /// <summary>
         /// Intialises a chess board
         /// </summary>
@@ -75,25 +77,70 @@ namespace ChessApp.Business
             _board = board;
         }
 
+        /// <summary>
+        /// Lowers the timer of each enpassant square by 1 and gets rid of squares with a timer of 0
+        /// </summary>
+        public void TickEnPassantSquares()
+        {
+            EnPassantSquares = EnPassantSquares
+                .Select(square => square with { Timer = square.Timer - 1 })
+                .Where(square => square.Timer > 0)
+                .ToList();
+        }
+
         public bool CanCastle(int player, int direction)
         {
             var king = GetKing(this, player);
             var rook = GetRookOnSideOfKing(this, player, direction);
 
-            if (rook is null || king.Moves != 0 || rook.Moves != 0)
+            if (rook is null || king.Moves != 0 || rook.Moves != 0 || PlayerIsChecked(this, player))
             {
                 return false;
             }
 
             for (int i = king.Position.Column + direction; i != rook.Position.Column; i += direction)
             {
-                if (TileIsOccupied(new Tile(king.Position.Row, i)))
+                var tile = new Tile(king.Position.Row, i);
+                if (TileIsOccupied(tile)
+                    || TileIsAttackedByColour(tile, Math.Abs(player - 1)))
                 {
                     return false;
                 }
             }
 
             return true;
+        }
+
+        public static bool PlayerIsChecked(ChessBoard board, int player)
+        {
+            var kingPos = GetKingLocation(board, player);
+            foreach (IPiece? piece in board.Board)
+            {
+                if (piece is null)
+                    continue;
+
+                if ((piece.IsWhite ? 1 : 0) == player)
+                    continue;
+
+                if (piece.GetAttackedTiles(board).Contains(kingPos))
+                    return true;
+            }
+            return false;
+        }
+
+        public bool TileIsAttackedByColour(Tile tile, int attackingPlayer)
+        {
+            foreach (var piece in Board)
+            {
+                if (piece is null) continue;
+
+                if ((piece.IsWhite ? 1 : 0) != attackingPlayer) continue;
+
+                if (piece.GetAttackedTiles(this).Contains(tile))
+                    return true;
+            }
+
+            return false;
         }
 
         public static IPiece GetPiece(char pieceChar, Tile position)
@@ -193,31 +240,11 @@ namespace ChessApp.Business
             this[from] = null;
         }
 
-        public static ChessBoard SetMove(ChessBoard board, Tile from, Tile to)
+        public static ChessBoard SetMove(ChessBoard board, IMove move)
         {
             ChessBoard newBoard = new(board);
-            newBoard.MovePiece(from, to);
+            move.DoMove(newBoard);
             return newBoard;
-        }
-
-        public static ChessBoard SetMove(ChessBoard board, Move move)
-        {
-            ChessBoard newBoard = new(board);
-            newBoard.MovePiece(move);
-            return newBoard;
-        }
-
-        public void MovePiece(Move move)
-        {
-            if (!TileIsOccupied(move.From))
-            {
-                throw new ArgumentException("No piece at that location", nameof(move));
-            }
-
-            this[move.From]!.Moves++;
-            this[move.From]!.Position = move.To;
-            this[move.To] = this[move.From];
-            this[move.From] = null;
         }
 
         public static Tile GetKingLocation(ChessBoard board, int player)
@@ -254,7 +281,7 @@ namespace ChessApp.Business
         public static Rook? GetRookOnSideOfKing(ChessBoard board, int player, int direction)
         {
             Tile kingPos = GetKingLocation(board, player);
-            for (int i = kingPos.Column; 0 <= i && i <= board.Columns; i += direction)
+            for (int i = kingPos.Column; 0 <= i && i < board.Columns; i += direction)
             {
                 if (board.Board[kingPos.Row, i] is Rook rook)
                 {

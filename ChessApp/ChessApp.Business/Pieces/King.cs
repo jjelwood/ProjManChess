@@ -1,4 +1,5 @@
-﻿using Prism.Mvvm;
+﻿using ChessApp.Business.Moves;
+using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -22,7 +23,7 @@ namespace ChessApp.Business.Pieces
 
         public Tile Position { get; set; }
 
-        public string ImagePath => Path.Combine(Directory.GetCurrentDirectory(), @$"..\..\..\..\ChessApp.Assets\Pieces\{PieceSprites.PieceSpriteName}\{(IsWhite ? 'w' : 'b')}K.svg");
+        public string ImagePath => Path.Combine(Directory.GetCurrentDirectory(), @$"..\..\..\..\ChessApp.Assets\Pieces\{Sprites.PieceSpriteName}\{(IsWhite ? 'w' : 'b')}K.svg");
 
         public char Character => IsWhite ? 'K' : 'k';
 
@@ -50,6 +51,19 @@ namespace ChessApp.Business.Pieces
         public IEnumerable<Tile> GetMoveableTiles(ChessBoard board)
         {
             return MovementMethods.FilteredTilesWhereOppositeColour(GetAttackedTiles(board), this, board);
+        }
+
+        public IEnumerable<IMove> GetMoves(ChessBoard board)
+        {
+            List<IMove> moves = MovementMethods.GetStandardMoves(this, board).ToList();
+            for (int i = -1; i <= 1; i += 2)
+            {
+                if (board.CanCastle(IsWhite ? 1 : 0, i))
+                {
+                    moves.Add(new CastlingMove(IsWhite ? 1 : 0, i, board));
+                }
+            }
+            return moves;
         }
     }
 }

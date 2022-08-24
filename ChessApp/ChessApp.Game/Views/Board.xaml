@@ -3,9 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:prism="http://prismlibrary.com/"            
              xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+             xmlns:converters="clr-namespace:ChessApp.Game.Converters"
              prism:ViewModelLocator.AutoWireViewModel="True">
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibiltyConverter"/>
+        <converters:IsNotNullToVisibiltyConverter x:Key="IsNotNullToVisibiltyConverter"/>
     </UserControl.Resources>
     <Grid>
         <!--Squares-->
@@ -58,8 +60,8 @@
                                     CommandParameter="{Binding}">
                                     <Button.Content>
                                         <svgc:SvgViewbox Source="{Binding ImagePath}"
-                                                         Width="40"
-                                                         Height="40"/>
+                                                         Width="45"
+                                                         Height="45"/>
                                     </Button.Content>
                                     <Button.Style>
                                         <Style TargetType="Button">
@@ -84,7 +86,7 @@
         </ItemsControl>
         
         <!--Moveable Tiles-->
-        <ItemsControl ItemsSource="{Binding TileMoveableArray}">
+        <ItemsControl ItemsSource="{Binding MoveArray}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <UniformGrid Columns="1"/>
@@ -103,14 +105,13 @@
                                 <Button
                                     Command="{Binding DataContext.MovePiece,
                                               RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                    CommandParameter="{Binding Tile}"
-                                    Visibility="{Binding Boolean,
-                                        Converter={StaticResource BooleanToVisibiltyConverter}}">
+                                    CommandParameter="{Binding Move}"
+                                    Visibility="{Binding Visibility}">
                                     <Button.Content>
                                         <Grid>
                                             <Border 
                                                 Background="#000001"
-                                                Opacity="0.1"
+                                                Opacity="0.3"
                                                 CornerRadius="13"
                                                 Width="26"
                                                 HorizontalAlignment="Center"

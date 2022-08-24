@@ -6,8 +6,22 @@ using System.Threading.Tasks;
 
 namespace ChessApp.Business
 {
-    public static class PieceSprites
+    public static class Sprites
     {
-        public static string PieceSpriteName => "anarcandy";
+        public static string PieceSpriteName => spriteNames[1];
+        public static (string BoardColourOne, string BoardColourTwo) BoardTheme => boardThemes["brown"];
+
+        public static readonly Dictionary<string, (string BoardColourOne, string BoardColourTwo)> boardThemes = new()
+        {
+            { "pink", new("#f07373", "#ebecba") },
+            { "brown", new("#b56f3c", "#dfbe91") },
+            { "green", new("#769656", "#eeeed2") }
+        };
+
+        public static readonly List<string> spriteNames = new()
+        {
+            "anarcandy",
+            "alpha",
+        };
     }
 }

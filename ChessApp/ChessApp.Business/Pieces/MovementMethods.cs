@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChessApp.Business.Moves;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -95,6 +96,11 @@ namespace ChessApp.Business.Pieces
             }
 
             return newTiles;
+        }
+
+        public static IEnumerable<IMove> GetStandardMoves(IPiece piece, ChessBoard board)
+        {
+            return piece.GetMoveableTiles(board).Select(tile => new StandardMove(piece.Position, tile));
         }
     }
 }
