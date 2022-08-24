@@ -43,14 +43,14 @@ public class BoardTests
     public void FENTest5()
     {
         ChessBoard board = new("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR", 8, 8);
-        Assert.True(board.Board[7, 0]?.IsWhite);
+        Assert.True(board.Board[7, 0]?.Colour == PieceColour.White);
     }
 
     [Fact]
     public void FENTest6()
     {
         ChessBoard board = new("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR", 8, 8);
-        Assert.True(!board.Board[0, 0]?.IsWhite);
+        Assert.True(board.Board[0, 0]?.Colour == PieceColour.Black);
     }
 
     [Fact]
@@ -83,6 +83,6 @@ public class BoardTests
         board.MovePiece(new(7, 6), new(5, 5));
         board.MovePiece(new(6, 4), new(4, 4));
         board.MovePiece(new(7, 5), new(6, 4));
-        Assert.True(board.CanCastle(1, 1));
+        Assert.True(board.CanCastle(PieceColour.White, 1));
     }
 }

@@ -11,14 +11,14 @@ namespace ChessApp.Business.Pieces
 {
     public class Pawn : BindableBase, IPiece
     {
-        public Pawn(bool isWhite, Tile position)
+        public Pawn(PieceColour colour, Tile position)
         {
-            IsWhite = isWhite;
-            Direction = IsWhite ? -1 : 1;
+            Colour = colour;
+            Direction = Colour == PieceColour.White ? -1 : 1;
             Position = position;
         }
 
-        public bool IsWhite { get; }
+        public PieceColour Colour { get; }
         public int Direction { get; }
         public Tile Position { get; set; }
 
@@ -27,7 +27,7 @@ namespace ChessApp.Business.Pieces
             return (IPiece)MemberwiseClone();
         }
 
-        public string ImagePath => Path.Combine(Directory.GetCurrentDirectory(), @$"..\..\..\..\ChessApp.Assets\Pieces\{Sprites.PieceSpriteName}\{(IsWhite ? 'w' : 'b')}P.svg");
+        public string ImagePath => Path.Combine(Directory.GetCurrentDirectory(), @$"..\..\..\..\ChessApp.Assets\Pieces\{Sprites.PieceSpriteName}\{(Colour == PieceColour.White ? 'w' : 'b')}P.svg");
 
         private int _moves;
         public int Moves
@@ -36,7 +36,7 @@ namespace ChessApp.Business.Pieces
             set { SetProperty(ref _moves, value); }
         }
 
-        public char Character => IsWhite ? 'P' : 'p';
+        public char Character => Colour == PieceColour.White ? 'P' : 'p';
 
         public IEnumerable<Tile> GetAttackedTiles(ChessBoard board)
         {
@@ -64,12 +64,7 @@ namespace ChessApp.Business.Pieces
             // Adding attacking tiles if they have an opposite colour piece
             foreach (Tile tile in GetAttackedTiles(board))
             {
-                var tileIsWhite = board.TileIsWhite(tile);
-                if (tileIsWhite is null)
-                {
-                    continue;
-                }
-                if (tileIsWhite != this.IsWhite)
+                if (board[tile]?.Colour != Colour && board[tile] is not null)
                 {
                     tiles.Add(tile);
                 }

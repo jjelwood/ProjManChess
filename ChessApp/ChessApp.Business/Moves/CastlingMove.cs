@@ -10,7 +10,7 @@ namespace ChessApp.Business.Moves
 {
     public class CastlingMove : IMove
     {
-        public CastlingMove(int player, int direction, ChessBoard board)
+        public CastlingMove(PieceColour player, int direction, ChessBoard board)
         {
             Player = player;
             Direction = direction;
@@ -24,7 +24,7 @@ namespace ChessApp.Business.Moves
         private readonly King _king;
         private readonly Rook? _rook;
 
-        public int Player { get; set; }
+        public PieceColour Player { get; set; }
 
         public Tile Tile { get; }
         public void DoMove(ChessBoard board)

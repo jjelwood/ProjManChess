@@ -9,7 +9,7 @@ namespace ChessApp.Business
     public interface IPiece
     {
         public int Moves { get; set; }
-        public bool IsWhite { get; }
+        public PieceColour Colour { get; }
         public string ImagePath { get; }
         public char Character { get; }
         public Tile Position { get; set; }

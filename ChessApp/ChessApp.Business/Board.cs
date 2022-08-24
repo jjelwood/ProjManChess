@@ -37,10 +37,10 @@ namespace ChessApp.Business
             Columns = board.Board.GetLength(1);
         }
 
-        public bool WhiteCanCastleKingSide => CanCastle(1, 1);
-        public bool WhiteCanCastleQueenSide => CanCastle(1, -1);
-        public bool BlackCanCastleKingSide => CanCastle(0, 1);
-        public bool BlackCanCastleQueenSide => CanCastle(0, -1);
+        public bool WhiteCanCastleKingSide => CanCastle(PieceColour.White, 1);
+        public bool WhiteCanCastleQueenSide => CanCastle(PieceColour.White, -1);
+        public bool BlackCanCastleKingSide => CanCastle(PieceColour.Black, 1);
+        public bool BlackCanCastleQueenSide => CanCastle(PieceColour.Black, -1);
 
         public int Rows { get; set; }
 
@@ -88,7 +88,7 @@ namespace ChessApp.Business
                 .ToList();
         }
 
-        public bool CanCastle(int player, int direction)
+        public bool CanCastle(PieceColour player, int direction)
         {
             var king = GetKing(this, player);
             var rook = GetRookOnSideOfKing(this, player, direction);
@@ -102,7 +102,7 @@ namespace ChessApp.Business
             {
                 var tile = new Tile(king.Position.Row, i);
                 if (TileIsOccupied(tile)
-                    || TileIsAttackedByColour(tile, Math.Abs(player - 1)))
+                    || TileIsAttackedByColour(tile, player.Opposite()))
                 {
                     return false;
                 }
@@ -111,7 +111,7 @@ namespace ChessApp.Business
             return true;
         }
 
-        public static bool PlayerIsChecked(ChessBoard board, int player)
+        public static bool PlayerIsChecked(ChessBoard board, PieceColour player)
         {
             var kingPos = GetKingLocation(board, player);
             foreach (IPiece? piece in board.Board)
@@ -119,7 +119,7 @@ namespace ChessApp.Business
                 if (piece is null)
                     continue;
 
-                if ((piece.IsWhite ? 1 : 0) == player)
+                if (piece.Colour == player)
                     continue;
 
                 if (piece.GetAttackedTiles(board).Contains(kingPos))
@@ -128,13 +128,13 @@ namespace ChessApp.Business
             return false;
         }
 
-        public bool TileIsAttackedByColour(Tile tile, int attackingPlayer)
+        public bool TileIsAttackedByColour(Tile tile, PieceColour attackingPlayer)
         {
             foreach (var piece in Board)
             {
                 if (piece is null) continue;
 
-                if ((piece.IsWhite ? 1 : 0) != attackingPlayer) continue;
+                if (piece.Colour != attackingPlayer) continue;
 
                 if (piece.GetAttackedTiles(this).Contains(tile))
                     return true;
@@ -145,16 +145,16 @@ namespace ChessApp.Business
 
         public static IPiece GetPiece(char pieceChar, Tile position)
         {
-            var isWhite = char.IsUpper(pieceChar);
+            var colour = char.IsUpper(pieceChar) ? PieceColour.White : PieceColour.Black;
 
             return char.ToLower(pieceChar) switch
             {
-                'p' => new Pawn(isWhite, position),
-                'k' => new King(isWhite, position),
-                'n' => new Knight(isWhite, position),
-                'b' => new Bishop(isWhite, position),
-                'q' => new Queen(isWhite, position),
-                'r' => new Rook(isWhite, position),
+                'p' => new Pawn(colour, position),
+                'k' => new King(colour, position),
+                'n' => new Knight(colour, position),
+                'b' => new Bishop(colour, position),
+                'q' => new Queen(colour, position),
+                'r' => new Rook(colour, position),
                 _ => throw new ArgumentException("Invalid piece", nameof(pieceChar)),
             };
         }
@@ -206,25 +206,7 @@ namespace ChessApp.Business
             if (Board[tile.Row, tile.Column] is null)
                 return null;
 
-            return Board[tile.Row, tile.Column]!.IsWhite;
-        }
-
-        /// <summary>
-        /// Method which returns if a given tile has a white piece in it
-        /// </summary>
-        /// <param name="row">Row of tile to check</param>
-        /// <param name="column">Column of tile to check</param>
-        /// <returns>Whether tile has a white piece. Null if tile not on board or empty</returns>
-        public bool? TileIsWhite(int row, int column)
-        {
-            if (column < 0 || column > Columns - 1 ||
-                row < 0 || row > Rows - 1)
-                return null;
-
-            if (Board[row, column] is null)
-                return null;
-
-            return Board[row, column]!.IsWhite;
+            return Board[tile.Row, tile.Column]!.Colour == PieceColour.White;
         }
 
         public void MovePiece(Tile from, Tile to)
@@ -247,11 +229,11 @@ namespace ChessApp.Business
             return newBoard;
         }
 
-        public static Tile GetKingLocation(ChessBoard board, int player)
+        public static Tile GetKingLocation(ChessBoard board, PieceColour player)
         {
             foreach (IPiece? piece in board.Board)
             {
-                if (piece is King && (piece.IsWhite ? 1 : 0) == player)
+                if (piece is King && (piece.Colour) == player)
                 {
                     return piece.Position;
                 }
@@ -259,11 +241,11 @@ namespace ChessApp.Business
             throw new Exception("There is no king of the specified colour on this board");
         }
 
-        public static King GetKing(ChessBoard board, int player)
+        public static King GetKing(ChessBoard board, PieceColour player)
         {
             foreach (IPiece? piece in board.Board)
             {
-                if (piece is King king && (piece.IsWhite ? 1 : 0) == player)
+                if (piece is King king && piece.Colour == player)
                 {
                     return king;
                 }
@@ -278,7 +260,7 @@ namespace ChessApp.Business
         /// <param name="player">Player whose rook</param>
         /// <param name="direction">Direction to search</param>
         /// <returns>Rook if piece exists else null</returns>
-        public static Rook? GetRookOnSideOfKing(ChessBoard board, int player, int direction)
+        public static Rook? GetRookOnSideOfKing(ChessBoard board, PieceColour player, int direction)
         {
             Tile kingPos = GetKingLocation(board, player);
             for (int i = kingPos.Column; 0 <= i && i < board.Columns; i += direction)

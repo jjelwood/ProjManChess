@@ -11,10 +11,10 @@ namespace ChessApp.Business.Pieces
     public class Queen : BindableBase, IPiece
     {
         public int Moves {get; set;} = 0;
-        public bool IsWhite { get; }
+        public PieceColour Colour { get; }
 
-        public string ImagePath => Path.Combine(Directory.GetCurrentDirectory(), @$"..\..\..\..\ChessApp.Assets\Pieces\{Sprites.PieceSpriteName}\{(IsWhite ? 'w' : 'b')}Q.svg");
-        public char Character => IsWhite ? 'Q' : 'q';
+        public string ImagePath => Path.Combine(Directory.GetCurrentDirectory(), @$"..\..\..\..\ChessApp.Assets\Pieces\{Sprites.PieceSpriteName}\{(Colour == PieceColour.White ? 'w' : 'b')}Q.svg");
+        public char Character => Colour == PieceColour.White ? 'Q' : 'q';
 
         public IPiece Clone()
         {
@@ -23,9 +23,9 @@ namespace ChessApp.Business.Pieces
 
         public Tile Position { get; set; }
 
-        public Queen(bool isWhite, Tile position)
+        public Queen(PieceColour colour, Tile position)
         {
-            IsWhite = isWhite;
+            Colour = colour;
             Position = position;
         }
 

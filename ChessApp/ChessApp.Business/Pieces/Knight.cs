@@ -10,18 +10,18 @@ namespace ChessApp.Business.Pieces
 {
     public class Knight : BindableBase, IPiece
     {
-        public Knight(bool isWhite, Tile position)
+        public Knight(PieceColour colour, Tile position)
         {
-            IsWhite = isWhite;
+            Colour = colour;
             Position = position;
         }
 
         public int Moves { get; set; } = 0;
-        public bool IsWhite { get; }
+        public PieceColour Colour { get; }
 
-        public string ImagePath => Path.Combine(Directory.GetCurrentDirectory(), @$"..\..\..\..\ChessApp.Assets\Pieces\{Sprites.PieceSpriteName}\{(IsWhite ? 'w' : 'b')}N.svg");
+        public string ImagePath => Path.Combine(Directory.GetCurrentDirectory(), @$"..\..\..\..\ChessApp.Assets\Pieces\{Sprites.PieceSpriteName}\{(Colour == PieceColour.White ? 'w' : 'b')}N.svg");
 
-        public char Character => IsWhite ? 'N' : 'n';
+        public char Character => Colour == PieceColour.White ? 'N' : 'n';
 
         public Tile Position { get; set; }
 

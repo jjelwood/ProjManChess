@@ -11,21 +11,21 @@ namespace ChessApp.Business.Pieces
 {
     public class King : BindableBase, IPiece
     {
-        public King(bool isWhite, Tile position)
+        public King(PieceColour colour, Tile position)
         {
-            IsWhite = isWhite;
+            Colour = colour;
             Position = position;
         }
 
         public int Moves { get; set; }
 
-        public bool IsWhite { get; }
+        public PieceColour Colour { get; }
 
         public Tile Position { get; set; }
 
-        public string ImagePath => Path.Combine(Directory.GetCurrentDirectory(), @$"..\..\..\..\ChessApp.Assets\Pieces\{Sprites.PieceSpriteName}\{(IsWhite ? 'w' : 'b')}K.svg");
+        public string ImagePath => Path.Combine(Directory.GetCurrentDirectory(), @$"..\..\..\..\ChessApp.Assets\Pieces\{Sprites.PieceSpriteName}\{(Colour == PieceColour.White ? 'w' : 'b')}K.svg");
 
-        public char Character => IsWhite ? 'K' : 'k';
+        public char Character => Colour == PieceColour.White ? 'K' : 'k';
 
         public IPiece Clone()
         {
@@ -58,9 +58,9 @@ namespace ChessApp.Business.Pieces
             List<IMove> moves = MovementMethods.GetStandardMoves(this, board).ToList();
             for (int i = -1; i <= 1; i += 2)
             {
-                if (board.CanCastle(IsWhite ? 1 : 0, i))
+                if (board.CanCastle(Colour, i))
                 {
-                    moves.Add(new CastlingMove(IsWhite ? 1 : 0, i, board));
+                    moves.Add(new CastlingMove(Colour, i, board));
                 }
             }
             return moves;

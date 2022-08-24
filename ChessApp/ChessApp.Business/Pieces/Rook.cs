@@ -12,16 +12,16 @@ namespace ChessApp.Business.Pieces
     public class Rook : BindableBase, IPiece
     {
         public int Moves { get; set; } = 0;
-        public bool IsWhite { get; }
+        public PieceColour Colour { get; }
         public Tile Position { get; set; }
 
-        public string ImagePath => Path.Combine(Directory.GetCurrentDirectory(), @$"..\..\..\..\ChessApp.Assets\Pieces\{Sprites.PieceSpriteName}\{(IsWhite ? 'w' : 'b')}R.svg");
+        public string ImagePath => Path.Combine(Directory.GetCurrentDirectory(), @$"..\..\..\..\ChessApp.Assets\Pieces\{Sprites.PieceSpriteName}\{(Colour == PieceColour.White ? 'w' : 'b')}R.svg");
 
-        public char Character => IsWhite ? 'R' : 'r';
+        public char Character => Colour == PieceColour.White ? 'R' : 'r';
 
-        public Rook(bool isWhite, Tile position)
+        public Rook(PieceColour colour, Tile position)
         {
-            IsWhite = isWhite;
+            Colour = colour;
             Position = position;
         }
 

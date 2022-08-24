@@ -11,21 +11,21 @@ namespace ChessApp.Business.Pieces
 {
     public class Bishop : BindableBase, IPiece
     {
-        public Bishop(bool isWhite, Tile position)
+        public Bishop(PieceColour colour, Tile position)
         {
-            IsWhite = isWhite;
+            Colour = colour;
             Position = position;
         }
 
         public int Moves { get; set; } = 0;
 
-        public bool IsWhite { get; }
+        public PieceColour Colour { get; }
 
         public Tile Position { get; set; }
 
-        public string ImagePath => Path.Combine(Directory.GetCurrentDirectory(), @$"..\..\..\..\ChessApp.Assets\Pieces\{Sprites.PieceSpriteName}\{(IsWhite ? 'w' : 'b')}B.svg");
+        public string ImagePath => Path.Combine(Directory.GetCurrentDirectory(), @$"..\..\..\..\ChessApp.Assets\Pieces\{Sprites.PieceSpriteName}\{(Colour == PieceColour.White ? 'w' : 'b')}B.svg");
 
-        public char Character => IsWhite ? 'B' : 'b';
+        public char Character => Colour == PieceColour.White ? 'B' : 'b';
 
         public IPiece Clone()
         {

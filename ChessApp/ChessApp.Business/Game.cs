@@ -30,9 +30,9 @@ namespace ChessApp.Business
             set { _moves = value; }
         }
 
-        public int PlayerToMove => (Moves + 1) % 2;
+        public PieceColour PlayerToMove => (PieceColour)((Moves + 1) % 2);
 
-        public static bool MoveIsValid(ChessBoard board, int playerToMove, IMove move)
+        public static bool MoveIsValid(ChessBoard board, PieceColour playerToMove, IMove move)
         {
             if (move is DoublePawnMove doublePawnMove)
             {
@@ -53,7 +53,7 @@ namespace ChessApp.Business
             throw new NotImplementedException();
         }
 
-        private static bool DoublePawnMoveIsValid(ChessBoard board, int playerToMove, DoublePawnMove move)
+        private static bool DoublePawnMoveIsValid(ChessBoard board, PieceColour playerToMove, DoublePawnMove move)
         {
             // If no piece a from location then move is invalid
             if (!board.TileIsOccupied(move.From))
@@ -62,12 +62,11 @@ namespace ChessApp.Business
             }
 
             IPiece piece = board[move.From]!;
-            int player = piece.IsWhite ? 1 : 0;
 
-            if (player != playerToMove
+            if (piece.Colour != playerToMove
                 || Math.Abs(move.From.Row - move.To.Row) != 2
                 || move.From.Column != move.To.Column
-                || PlayerIsCheckedAfterMove(board, player, move))
+                || PlayerIsCheckedAfterMove(board, piece.Colour, move))
             {
                 return false;
             }
@@ -75,7 +74,7 @@ namespace ChessApp.Business
             return true;
         }
 
-        public static bool StandardMoveIsValid(ChessBoard board, int playerToMove, StandardMove move)
+        public static bool StandardMoveIsValid(ChessBoard board, PieceColour playerToMove, StandardMove move)
         {
             // If no piece a from location then move is invalid
             if (!board.TileIsOccupied(move.From))
@@ -84,14 +83,13 @@ namespace ChessApp.Business
             }
 
             IPiece piece = board[move.From]!;
-            int player = piece.IsWhite ? 1 : 0;
 
             // Move not valid if it's not in the moveable tiles of the piece
             // If it's not the right colour
             // Or if you move into check
-            if (player != playerToMove
+            if (piece.Colour != playerToMove
                 || !piece.GetMoveableTiles(board).Contains(move.To)
-                || PlayerIsCheckedAfterMove(board, player, move))
+                || PlayerIsCheckedAfterMove(board, piece.Colour, move))
             {
                 return false;
             }
@@ -99,12 +97,12 @@ namespace ChessApp.Business
             return true;
         }
 
-        public static IEnumerable<IMove> GetValidMovesForPiece(IPiece piece, ChessBoard board, int player)
+        public static IEnumerable<IMove> GetValidMovesForPiece(IPiece piece, ChessBoard board, PieceColour player)
         {
             return piece.GetMoves(board).Where(m => MoveIsValid(board, player, m));
         }
 
-        public static bool PlayerIsCheckedAfterMove(ChessBoard board, int player, IMove move)
+        public static bool PlayerIsCheckedAfterMove(ChessBoard board, PieceColour player, IMove move)
         {
             var newBoard = ChessBoard.SetMove(board, move);
             if (ChessBoard.PlayerIsChecked(newBoard, player))
@@ -114,7 +112,7 @@ namespace ChessApp.Business
             return false;
         }
 
-        public static IEnumerable<IMove> AllMovesForPlayer(ChessBoard board, int player)
+        public static IEnumerable<IMove> AllMovesForPlayer(ChessBoard board, PieceColour player)
         {
             List<IMove> result = new();
             foreach (var piece in board.Board)

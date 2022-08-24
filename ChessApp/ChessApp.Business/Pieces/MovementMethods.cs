@@ -88,8 +88,7 @@ namespace ChessApp.Business.Pieces
             // Adding attacking tiles if they have an opposite colour piece
             foreach (Tile tile in tiles)
             {
-                var tileIsWhite = board.TileIsWhite(tile);
-                if (tileIsWhite != piece.IsWhite || tileIsWhite is null)
+                if (board[tile]?.Colour != piece.Colour)
                 {
                     newTiles.Add(tile);
                 }
