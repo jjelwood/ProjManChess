@@ -2,6 +2,7 @@
 using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -14,10 +15,11 @@ namespace ChessApp.Business.Pieces
     /// </summary>
     public class Pawn : BindableBase, IPiece
     {
-        public Pawn(PieceColour colour, Tile position)
+        public Pawn(PieceColour colour, Tile position, int rowsOnBoard)
         {
             Colour = colour;
             Direction = Colour == PieceColour.White ? -1 : 1;
+            PromotionRank = Colour == PieceColour.White ? 0 : rowsOnBoard - 1;
             Position = position;
         }
 
@@ -28,6 +30,11 @@ namespace ChessApp.Business.Pieces
         /// The direction the pawn moves in
         /// </summary>
         public int Direction { get; }
+
+        /// <summary>
+        /// The rank the pawn must reach to promote
+        /// </summary>
+        public int PromotionRank { get; }
 
         public IPiece Clone()
         {
@@ -58,14 +65,23 @@ namespace ChessApp.Business.Pieces
             return tiles.Where(tile => tile.IsOnBoard(board));
         }
 
-        public IEnumerable<Tile> GetMoveableTiles(ChessBoard board)
+        public IEnumerable<StandardMove> GetStandardAndPromotionMoves(ChessBoard board)
         {
-            var tiles = new List<Tile>();
-            
+            var moves = new List<StandardMove>();
+
             // Adding tile directly in front if not occupied
-            if (!board.TileIsOccupied(Tile.Move(Position, Direction, 0)))
+            var tileInFront = Tile.Move(Position, Direction, 0);
+            if (tileInFront.IsOnBoard(board)
+                && !board.TileIsOccupied(tileInFront))
             {
-                tiles.Add(Tile.Move(Position, Direction, 0));
+                if (Direction + Position.Row != PromotionRank)
+                {
+                    moves.Add(new(Position, tileInFront));
+                }
+                else
+                {
+                    AddPromotionMovesToList(moves, tileInFront);
+                }
             }
 
             // Adding attacking tiles if they have an opposite colour piece
@@ -73,12 +89,26 @@ namespace ChessApp.Business.Pieces
             {
                 if (board[tile]?.Colour != Colour && board[tile] is not null)
                 {
-                    tiles.Add(tile);
+                    if (Direction + Position.Row != PromotionRank)
+                    {
+                        moves.Add(new(Position, tile));
+                    }
+                    else
+                    {
+                        AddPromotionMovesToList(moves, tile);
+                    }
                 }
             }
 
-            // Makes sure tiles added are on the board
-            return tiles.Where(tile => tile.IsOnBoard(board));
+            return moves;
+        }
+
+        public void AddPromotionMovesToList(List<StandardMove> moves, Tile tile)
+        {
+            moves.Add(new PromotionMove<Rook>(Position, tile));
+            moves.Add(new PromotionMove<Knight>(Position, tile));
+            moves.Add(new PromotionMove<Bishop>(Position, tile));
+            moves.Add(new PromotionMove<Queen>(Position, tile));
         }
 
         /// <summary>
@@ -89,8 +119,12 @@ namespace ChessApp.Business.Pieces
         public IEnumerable<DoublePawnMove> GetDoublePawnMoves(ChessBoard board)
         {
             var moves = new List<DoublePawnMove>();
+            var tileOneInFront = Tile.Move(Position, Direction, 0);
+            var tileTwoInFront = Tile.Move(Position, Direction * 2, 0);
             if (Moves == 0 &&
-                !board.TileIsOccupied(Tile.Move(Position, Direction, 0)) &&
+                tileOneInFront.IsOnBoard(board) && 
+                tileTwoInFront.IsOnBoard(board) &&
+                !board.TileIsOccupied(tileOneInFront) &&
                 !board.TileIsOccupied(Tile.Move(Position, Direction * 2, 0)))
             {
                 moves.Add(new(Position, Tile.Move(Position, Direction * 2, 0)));
@@ -101,21 +135,27 @@ namespace ChessApp.Business.Pieces
         /// <summary>
         /// Gets any en-passant moves the piece can make
         /// </summary>
-        /// <param name="board"></param>
-        /// <returns></returns>
+        /// <param name="board">The board the pawn is on</param>
+        /// <returns>Any en passant moves the pawn can make</returns>
         public IEnumerable<EnPassantMove> GetEnPassantMoves(ChessBoard board)
         {
             if (!board.EnPassantSquares.Any())
             {
                 return Enumerable.Empty<EnPassantMove>();
             }
+
             var attackingTiles = GetAttackedTiles(board);
             var result = new List<EnPassantMove>();
             foreach (var square in board.EnPassantSquares)
             {
                 if (attackingTiles.Contains(square.Tile))
                 {
-                    result.Add(new(Position, square.Tile, Tile.Move(square.Tile, -Direction, 0)));
+                    var attackingTile = Tile.Move(square.Tile, -Direction, 0);
+                    if (board[attackingTile] is not IPiece attackingPiece)
+                    {
+                        continue;
+                    }
+                    result.Add(new(Position, square.Tile, attackingTile, attackingPiece.Colour));
                 }
             }
             return result;
@@ -123,7 +163,7 @@ namespace ChessApp.Business.Pieces
 
         public IEnumerable<IMove> GetMoves(ChessBoard board)
         {
-            return MovementMethods.GetStandardMoves(this, board)
+            return ((IEnumerable<IMove>)GetStandardAndPromotionMoves(board))
                 .Union(GetEnPassantMoves(board))
                 .Union(GetDoublePawnMoves(board));
         }

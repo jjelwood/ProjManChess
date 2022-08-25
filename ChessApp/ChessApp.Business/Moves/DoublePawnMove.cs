@@ -18,7 +18,8 @@ namespace ChessApp.Business.Moves
         public override void DoMove(ChessBoard board)
         {
             base.DoMove(board);
-            board.EnPassantSquares.Add(new(new((From.Row + To.Row) / 2, From.Column), 2));
+            board.EnPassantSquares.Add(new(new((From.Row + To.Row) / 2, From.Column), 2,
+                board[To]!.Colour));
         }
     }
 }

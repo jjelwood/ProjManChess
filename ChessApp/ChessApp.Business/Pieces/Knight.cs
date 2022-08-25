@@ -1,4 +1,5 @@
-﻿using Prism.Mvvm;
+﻿using ChessApp.Business.Moves;
+using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -49,14 +50,16 @@ namespace ChessApp.Business.Pieces
             return tiles.Where(tile => tile.IsOnBoard(board));
         }
 
-        public IEnumerable<Tile> GetMoveableTiles(ChessBoard board)
+        public IEnumerable<StandardMove> GetStandardMoves(ChessBoard board)
         {
-            return MovementMethods.FilteredTilesWhereOppositeColour(GetAttackedTiles(board), this, board);
+            var tiles = MovementMethods.FilteredTilesWhereOppositeColour(GetAttackedTiles(board),
+                this, board);
+            return MovementMethods.ConvertToStandardMoves(this, tiles, board);
         }
 
         public IEnumerable<IMove> GetMoves(ChessBoard board)
         {
-            return MovementMethods.GetStandardMoves(this, board);
+            return GetStandardMoves(board);
         }
     }
 }

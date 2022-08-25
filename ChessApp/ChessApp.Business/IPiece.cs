@@ -47,14 +47,6 @@ namespace ChessApp.Business
         public IEnumerable<Tile> GetAttackedTiles(ChessBoard board);
 
         /// <summary>
-        /// Gets all of the standard tiles the piece can move to.
-        /// This does not include special moves such as castling, en-passant, and double pawn pushes
-        /// </summary>
-        /// <param name="board">The board the piece is on</param>
-        /// <returns>An enumerable of tiles the piece can move to</returns>
-        public IEnumerable<Tile> GetMoveableTiles(ChessBoard board);
-
-        /// <summary>
         /// Gets all of the possible moves for the piece
         /// </summary>
         /// <param name="board">The board the piece is on</param>

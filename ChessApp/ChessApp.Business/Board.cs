@@ -49,7 +49,7 @@ namespace ChessApp.Business
 
         public int Columns { get; set; }
 
-        public List<(Tile Tile, int Timer)> EnPassantSquares { get; set; } = new();
+        public List<(Tile Tile, int Timer, PieceColour Colour)> EnPassantSquares { get; set; } = new();
 
         /// <summary>
         /// Intialises a chess board
@@ -72,7 +72,7 @@ namespace ChessApp.Business
                     }
                     else
                     {
-                        board[i, j] = GetPiece(c, new(i, j));
+                        board[i, j] = GetPiece(c, new(i, j), Rows);
                         j++;
                     }
                 }
@@ -146,13 +146,13 @@ namespace ChessApp.Business
             return false;
         }
 
-        public static IPiece GetPiece(char pieceChar, Tile position)
+        public static IPiece GetPiece(char pieceChar, Tile position, int rowsOnBoard)
         {
             var colour = char.IsUpper(pieceChar) ? PieceColour.White : PieceColour.Black;
 
             return char.ToLower(pieceChar) switch
             {
-                'p' => new Pawn(colour, position),
+                'p' => new Pawn(colour, position, rowsOnBoard),
                 'k' => new King(colour, position),
                 'n' => new Knight(colour, position),
                 'b' => new Bishop(colour, position),

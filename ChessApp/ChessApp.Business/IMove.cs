@@ -18,5 +18,10 @@ namespace ChessApp.Business
         /// The tile associated with the move. This is the tile to be clicked on to do the move
         /// </summary>
         public Tile Tile { get; }
+
+        /// <summary>
+        /// The name of the move
+        /// </summary>
+        public string MoveName { get; }
     }
 }

@@ -51,14 +51,16 @@ namespace ChessApp.Business.Pieces
             return tiles.Where(tile => tile.IsOnBoard(board));
         }
 
-        public IEnumerable<Tile> GetMoveableTiles(ChessBoard board)
+        public IEnumerable<StandardMove> GetStandardMoves(ChessBoard board)
         {
-            return MovementMethods.FilteredTilesWhereOppositeColour(GetAttackedTiles(board), this, board);
+            var tiles = MovementMethods.FilteredTilesWhereOppositeColour(GetAttackedTiles(board),
+                this, board);
+            return MovementMethods.ConvertToStandardMoves(this, tiles, board);
         }
 
         public IEnumerable<IMove> GetMoves(ChessBoard board)
         {
-            List<IMove> moves = MovementMethods.GetStandardMoves(this, board).ToList();
+            List<IMove> moves = ((IEnumerable<IMove>)GetStandardMoves(board)).ToList();
             for (int i = -1; i <= 1; i += 2)
             {
                 if (board.CanCastle(Colour, i))

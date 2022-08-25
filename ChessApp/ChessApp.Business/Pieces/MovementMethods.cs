@@ -100,9 +100,9 @@ namespace ChessApp.Business.Pieces
             return newTiles;
         }
 
-        public static IEnumerable<IMove> GetStandardMoves(IPiece piece, ChessBoard board)
+        public static IEnumerable<StandardMove> ConvertToStandardMoves(IPiece piece, IEnumerable<Tile> tiles, ChessBoard board)
         {
-            return piece.GetMoveableTiles(board).Select(tile => new StandardMove(piece.Position, tile));
+            return tiles.Select(tile => new StandardMove(piece.Position, tile));
         }
     }
 }

@@ -64,7 +64,8 @@ namespace ChessApp.Business
             }
             if (move is CastlingMove castlingMove)
             {
-                return board.CanCastle(castlingMove.Player, castlingMove.Direction);
+                return board.CanCastle(castlingMove.Player, castlingMove.Direction)
+                    && castlingMove.Player == playerToMove;
             }
             if (move is EnPassantMove)
             {
@@ -118,11 +119,10 @@ namespace ChessApp.Business
 
             IPiece piece = board[move.From]!;
 
-            // Move not valid if it's not in the moveable tiles of the piece
+            // Move not valid if:
             // If it's not the right colour
             // Or if you move into check
             if (piece.Colour != playerToMove
-                || !piece.GetMoveableTiles(board).Contains(move.To)
                 || PlayerIsCheckedAfterMove(board, piece.Colour, move))
             {
                 return false;

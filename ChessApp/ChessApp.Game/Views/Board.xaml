@@ -10,6 +10,10 @@
         <converters:IsNotNullToVisibiltyConverter x:Key="IsNotNullToVisibiltyConverter"/>
     </UserControl.Resources>
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
         <!--Squares-->
         <ItemsControl ItemsSource="{Binding BoardColours}">
             <ItemsControl.ItemsPanel>
@@ -140,5 +144,9 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
+
+        <Button Content="RESET"
+                Grid.Column="1"
+                Command="{Binding Reset}"/>
     </Grid>
 </UserControl>

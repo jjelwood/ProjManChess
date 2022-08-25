@@ -11,17 +11,21 @@ namespace ChessApp.Business.Moves
     /// </summary>
     public class EnPassantMove : IMove
     {
-        public EnPassantMove(Tile from, Tile to, Tile capturingTile)
+        public EnPassantMove(Tile from, Tile to, Tile capturingTile, PieceColour capturingColour)
         {
             Tile = to;
             From = from;
             To = to;
             CapturingTile = capturingTile;
+            CapturingColour = capturingColour;
+            MoveName = $"{From}{To}x{CapturingTile}";
         }
 
-        public Tile From { get; set; }
-        public Tile To { get; set; }
-        public Tile CapturingTile { get; set; }
+        public string MoveName { get; set; }
+        public PieceColour CapturingColour { get; }
+        public Tile From { get; }
+        public Tile To { get; }
+        public Tile CapturingTile { get; }
         public Tile Tile { get; }
 
         public void DoMove(ChessBoard board)

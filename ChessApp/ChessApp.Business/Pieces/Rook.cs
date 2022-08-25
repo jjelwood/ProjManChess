@@ -38,14 +38,16 @@ namespace ChessApp.Business.Pieces
             return MovementMethods.HorizontalTileMovement(board, Position);
         }
 
-        public IEnumerable<Tile> GetMoveableTiles(ChessBoard board)
+        public IEnumerable<StandardMove> GetStandardMoves(ChessBoard board)
         {
-            return MovementMethods.FilteredTilesWhereOppositeColour(GetAttackedTiles(board), this, board);
+            var tiles = MovementMethods.FilteredTilesWhereOppositeColour(GetAttackedTiles(board),
+                this, board);
+            return MovementMethods.ConvertToStandardMoves(this, tiles, board);
         }
 
         public IEnumerable<IMove> GetMoves(ChessBoard board)
         {
-            return GetMoveableTiles(board).Select(tile => new StandardMove(Position, tile));
+            return GetStandardMoves(board);
         }
     }
 }

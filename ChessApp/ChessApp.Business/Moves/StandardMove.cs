@@ -17,8 +17,10 @@ namespace ChessApp.Business.Moves
             From = from;
             To = to;
             Tile = to;
+            MoveName = $"{from}{to}";
         }
 
+        public string MoveName { get; set; }
         public Tile From { get; set; }
         public Tile To { get; set; }
 

@@ -28,12 +28,14 @@ namespace ChessApp.Business.Moves
             _rook = ChessBoard.GetRookOnSideOfKing(board, Player, Direction);
 
             Tile = Tile.Move(_king.Position, 0, 2 * direction);
+            MoveName = Direction == 1 ? "O-O" : "O-O-O";
         }
 
 
         private readonly King _king;
         private readonly Rook? _rook;
 
+        public string MoveName { get; set; }
         public int Direction { get; set; }
         public PieceColour Player { get; set; }
         public Tile Tile { get; }

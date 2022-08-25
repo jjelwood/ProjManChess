@@ -36,5 +36,10 @@ namespace ChessApp.Business
         {
             return new Tile(tile.Row + rows, tile.Column + columns);
         }
+
+        public override string ToString()
+        {
+            return $"{(char)(Column + 97)}{8 - Row}";
+        }
     }
 }

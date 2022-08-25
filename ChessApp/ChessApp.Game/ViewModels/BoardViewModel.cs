@@ -17,9 +17,27 @@ namespace ChessApp.Game.ViewModels
         public string boardColour2 = Sprites.BoardTheme.BoardColourTwo;
         public bool isFlipped = true;
 
+        #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         public BoardViewModel()
+        #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
             _game = new(new("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR", 8, 8));
+            _game = new Business.Game(new("rnbq1k1r/pp1Pbppp/2p5/8/2B5/8/PPP1NnPP/RNBQK2R", 8, 8));
+            _game.Board[new Tile(0, 5)]!.Moves = 1;
+        }
+
+        private DelegateCommand _reset;
+        public DelegateCommand Reset =>
+            _reset ?? (_reset = new DelegateCommand(ExecuteReset));
+
+        void ExecuteReset()
+        {
+            _game = new Business.Game(new("rnbq1k1r/pp1Pbppp/2p5/8/2B5/8/PPP1NnPP/RNBQK2R", 8, 8));
+            _game.Board[new Tile(0, 5)]!.Moves = 1;
+            isFlipped = true;
+            RaisePropertyChanged(nameof(MoveArray));
+            RaisePropertyChanged(nameof(JaggedArrayBoard));
+            RaisePropertyChanged(nameof(BoardColours));
         }
 
         private Business.Game _game;
