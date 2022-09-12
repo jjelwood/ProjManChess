@@ -1,0 +1,12 @@
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp.Core\bin\Debug\net6.0-windows\ChessApp.Core.deps.json
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp.Core\bin\Debug\net6.0-windows\ChessApp.Core.dll
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp.Core\bin\Debug\net6.0-windows\ChessApp.Core.pdb
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp.Core\obj\Debug\net6.0-windows\ChessApp.Core.csproj.AssemblyReference.cache
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp.Core\obj\Debug\net6.0-windows\ChessApp.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp.Core\obj\Debug\net6.0-windows\ChessApp.Core.AssemblyInfoInputs.cache
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp.Core\obj\Debug\net6.0-windows\ChessApp.Core.AssemblyInfo.cs
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp.Core\obj\Debug\net6.0-windows\ChessApp.Core.csproj.CoreCompileInputs.cache
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp.Core\obj\Debug\net6.0-windows\ChessApp.Core.dll
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp.Core\obj\Debug\net6.0-windows\refint\ChessApp.Core.dll
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp.Core\obj\Debug\net6.0-windows\ChessApp.Core.pdb
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp.Core\obj\Debug\net6.0-windows\ref\ChessApp.Core.dll

@@ -1,4 +1,5 @@
 ﻿using ChessApp.Business.Moves;
+using ChessApp.Core;
 using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
@@ -41,7 +42,7 @@ namespace ChessApp.Business.Pieces
             return (IPiece)MemberwiseClone();
         }
 
-        public string ImagePath => Path.Combine(Directory.GetCurrentDirectory(), @$"..\..\..\..\ChessApp.Assets\Pieces\{Sprites.PieceSpriteName}\{(Colour == PieceColour.White ? 'w' : 'b')}P.svg");
+        public string ImagePath => Path.Combine(Directory.GetCurrentDirectory(), @$"..\..\..\..\ChessApp.Assets\Pieces\{Config.PieceSpriteName}\{(Colour == PieceColour.White ? 'w' : 'b')}P.svg");
 
         private int _moves;
         public int Moves

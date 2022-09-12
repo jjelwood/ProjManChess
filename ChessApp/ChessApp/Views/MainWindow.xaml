@@ -3,8 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:prism="http://prismlibrary.com/"
         prism:ViewModelLocator.AutoWireViewModel="True"
-        Title="{Binding Title}" Height="525" Width="525" >
+        Title="{Binding Title}" Height="525" Width="1050" >
     <Grid>
-        <ContentControl prism:RegionManager.RegionName="ContentRegion" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <ContentControl prism:RegionManager.RegionName="ContentRegion"/>
+        <ContentControl prism:RegionManager.RegionName="SettingsRegion"
+                        Grid.Column="1"/>
     </Grid>
 </Window>

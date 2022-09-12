@@ -1,4 +1,5 @@
 ﻿using ChessApp.Business.Moves;
+using ChessApp.Core;
 using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace ChessApp.Business.Pieces
         public PieceColour Colour { get; }
         public Tile Position { get; set; }
 
-        public string ImagePath => Path.Combine(Directory.GetCurrentDirectory(), @$"..\..\..\..\ChessApp.Assets\Pieces\{Sprites.PieceSpriteName}\{(Colour == PieceColour.White ? 'w' : 'b')}R.svg");
+        public string ImagePath => Path.Combine(Directory.GetCurrentDirectory(), @$"..\..\..\..\ChessApp.Assets\Pieces\{Config.PieceSpriteName}\{(Colour == PieceColour.White ? 'w' : 'b')}R.svg");
 
         public char Character => Colour == PieceColour.White ? 'R' : 'r';
 

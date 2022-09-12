@@ -1,43 +1,32 @@
 ﻿using ChessApp.Business;
 using ChessApp.Business.Moves;
 using ChessApp.Business.Pieces;
+using ChessApp.Core;
 using Prism.Commands;
 using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows;
 
 namespace ChessApp.Game.ViewModels
 {
     public class BoardViewModel : BindableBase
     {
-        public string boardColour1 = Sprites.BoardTheme.BoardColourOne;
-        public string boardColour2 = Sprites.BoardTheme.BoardColourTwo;
-        public bool isFlipped = true;
+        public string boardColour1;
+        public string boardColour2;
+        public bool isFlipped = false;
+
 
         #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
-        public BoardViewModel()
+        public BoardViewModel(IApplicationCommands applicationCommands)
         #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
-            _game = new(new("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR", 8, 8));
-            _game = new Business.Game(new("rnbq1k1r/pp1Pbppp/2p5/8/2B5/8/PPP1NnPP/RNBQK2R", 8, 8));
-            _game.Board[new Tile(0, 5)]!.Moves = 1;
-        }
-
-        private DelegateCommand _reset;
-        public DelegateCommand Reset =>
-            _reset ?? (_reset = new DelegateCommand(ExecuteReset));
-
-        void ExecuteReset()
-        {
-            _game = new Business.Game(new("rnbq1k1r/pp1Pbppp/2p5/8/2B5/8/PPP1NnPP/RNBQK2R", 8, 8));
-            _game.Board[new Tile(0, 5)]!.Moves = 1;
-            isFlipped = true;
-            RaisePropertyChanged(nameof(MoveArray));
-            RaisePropertyChanged(nameof(JaggedArrayBoard));
-            RaisePropertyChanged(nameof(BoardColours));
+            _game = new(new(ChessBoard.StartPosition, 8, 8));
+            applicationCommands.SaveSettingsCommand.RegisterCommand(UpdateConfig);
+            UpdateConfig.Execute();
         }
 
         private Business.Game _game;
@@ -48,6 +37,17 @@ namespace ChessApp.Game.ViewModels
         {
             get { return _game; }
             set { SetProperty(ref _game, value); }
+        }
+
+        private DelegateCommand _updateConfig;
+        public DelegateCommand UpdateConfig => _updateConfig ??= new DelegateCommand(ExecuteUpdateConfig);
+
+        void ExecuteUpdateConfig()
+        {
+            boardColour1 = Config.BoardTheme.BoardColourTwo;
+            boardColour2 = Config.BoardTheme.BoardColourOne;
+            RaisePropertyChanged(nameof(BoardColours));
+            RaisePropertyChanged(nameof(JaggedArrayBoard));
         }
 
         public ChessBoard Board => Game.Board;
@@ -66,10 +66,10 @@ namespace ChessApp.Game.ViewModels
                     IPiece?[] row = new IPiece?[Board.Columns];
                     for (int j = 0; j < Board.Columns; j++)
                     {
-                        var column = isFlipped ? j : Board.Columns - 1 - j;
+                        var column = (!(isFlipped && Config.BoardFlipsBetweenMoves)) ? j : Board.Columns - 1 - j;
                         row[column] = Board.Board[i, j];
                     }
-                    toReturn[isFlipped ? i : Board.Rows - 1 - i] = row;
+                    toReturn[(!(isFlipped && Config.BoardFlipsBetweenMoves)) ? i : Board.Rows - 1 - i] = row;
                 }
                 return toReturn;
             }
@@ -96,11 +96,11 @@ namespace ChessApp.Game.ViewModels
                 string[][] result = new string[Board.Rows][];
                 for (int i = 0; i < Board.Rows; i++)
                 {
-                    var row = isFlipped ? i : Board.Rows - 1 - i;
+                    var row = (!(isFlipped && Config.BoardFlipsBetweenMoves)) ? i : Board.Rows - 1 - i;
                     result[row] = new string[Board.Columns];
                     for (int j = 0; j < Board.Columns; j++)
                     {
-                        var column = isFlipped ? j : Board.Columns - 1 - j;
+                        var column = (!(isFlipped && Config.BoardFlipsBetweenMoves)) ? j : Board.Columns - 1 - j;
                         result[row][column] = i % 2 == 0 ^ j % 2 == 0 ? boardColour1 : boardColour2;
                     }
                 }
@@ -140,8 +140,8 @@ namespace ChessApp.Game.ViewModels
                 {
                     var tile = move.Tile;
 
-                    var row = isFlipped ? tile.Row : Board.Rows - 1 - tile.Row;
-                    var column = isFlipped ? tile.Column : Board.Rows - 1 - tile.Column;
+                    var row = (!(isFlipped && Config.BoardFlipsBetweenMoves)) ? tile.Row : Board.Rows - 1 - tile.Row;
+                    var column = (!(isFlipped && Config.BoardFlipsBetweenMoves)) ? tile.Column : Board.Rows - 1 - tile.Column;
 
                     result[row][column].Move = move;
                     result[row][column].Visibility = Visibility.Visible;

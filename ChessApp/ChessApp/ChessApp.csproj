@@ -8,6 +8,10 @@
     <PackageReference Include="Prism.Unity" Version="8.1.97" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ChessApp.Core\ChessApp.Core.csproj" />
     <ProjectReference Include="..\ChessApp.Game\ChessApp.Game.csproj" />
+    <ProjectReference Include="..\ChessApp.Menu\ChessApp.Menu.csproj" />
+    <ProjectReference Include="..\ChessApp.Services.Interfaces\ChessApp.Services.Interfaces.csproj" />
+    <ProjectReference Include="..\ChessApp.Services\ChessApp.Services.csproj" />
   </ItemGroup>
 </Project>

@@ -38,6 +38,22 @@
         "compile": {
           "ref/netstandard1.5/System.Runtime.dll": {}
         }
+      },
+      "ChessApp.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Prism.Core": "8.1.97"
+        },
+        "compile": {
+          "bin/placeholder/ChessApp.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ChessApp.Core.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WPF"
+        ]
       }
     }
   },
@@ -189,10 +205,16 @@
         "system.runtime.4.3.0.nupkg.sha512",
         "system.runtime.nuspec"
       ]
+    },
+    "ChessApp.Core/1.0.0": {
+      "type": "project",
+      "path": "../ChessApp.Core/ChessApp.Core.csproj",
+      "msbuildProject": "../ChessApp.Core/ChessApp.Core.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0-windows7.0": [
+      "ChessApp.Core >= 1.0.0",
       "Prism.Core >= 8.1.97",
       "System.Runtime >= 4.3.0"
     ]
@@ -228,7 +250,11 @@
       "frameworks": {
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\jj\\source\\repos\\WpfMvvmPrism\\ProjManQuiz\\ChessApp\\ChessApp.Core\\ChessApp.Core.csproj": {
+              "projectPath": "C:\\Users\\jj\\source\\repos\\WpfMvvmPrism\\ProjManQuiz\\ChessApp\\ChessApp.Core\\ChessApp.Core.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

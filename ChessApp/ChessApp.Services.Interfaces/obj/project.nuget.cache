@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "eerBwiHKKmxbojQn7rU82hitufE2zpK2mc/ZIaEKRSQ4NchC/AYEUH4svKe9bVk98hI8DyOaOBGKn0f4sBH9kw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\jj\\source\\repos\\WpfMvvmPrism\\ProjManQuiz\\ChessApp\\ChessApp.Services.Interfaces\\ChessApp.Services.Interfaces.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\jj\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\jj\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
+    "C:\\Users\\jj\\.nuget\\packages\\prism.core\\8.1.97\\prism.core.8.1.97.nupkg.sha512",
+    "C:\\Users\\jj\\.nuget\\packages\\system.runtime\\4.3.0\\system.runtime.4.3.0.nupkg.sha512"
+  ],
+  "logs": []
+}

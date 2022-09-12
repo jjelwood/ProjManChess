@@ -97,6 +97,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
+          "ChessApp.Core": "1.0.0",
           "Prism.Core": "8.1.97",
           "System.Runtime": "4.3.0"
         },
@@ -105,6 +106,38 @@
         },
         "runtime": {
           "bin/placeholder/ChessApp.Business.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WPF"
+        ]
+      },
+      "ChessApp.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Prism.Core": "8.1.97"
+        },
+        "compile": {
+          "bin/placeholder/ChessApp.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ChessApp.Core.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WPF"
+        ]
+      },
+      "ChessApp.Services.Interfaces/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "ChessApp.Business": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/ChessApp.Services.Interfaces.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ChessApp.Services.Interfaces.dll": {}
         },
         "frameworkReferences": [
           "Microsoft.WindowsDesktop.App.WPF"
@@ -458,11 +491,23 @@
       "type": "project",
       "path": "../ChessApp.Business/ChessApp.Business.csproj",
       "msbuildProject": "../ChessApp.Business/ChessApp.Business.csproj"
+    },
+    "ChessApp.Core/1.0.0": {
+      "type": "project",
+      "path": "../ChessApp.Core/ChessApp.Core.csproj",
+      "msbuildProject": "../ChessApp.Core/ChessApp.Core.csproj"
+    },
+    "ChessApp.Services.Interfaces/1.0.0": {
+      "type": "project",
+      "path": "../ChessApp.Services.Interfaces/ChessApp.Services.Interfaces.csproj",
+      "msbuildProject": "../ChessApp.Services.Interfaces/ChessApp.Services.Interfaces.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0-windows7.0": [
       "ChessApp.Business >= 1.0.0",
+      "ChessApp.Core >= 1.0.0",
+      "ChessApp.Services.Interfaces >= 1.0.0",
       "Prism.Wpf >= 8.1.97",
       "SharpVectors >= 1.8.0"
     ]
@@ -501,6 +546,12 @@
           "projectReferences": {
             "C:\\Users\\jj\\source\\repos\\WpfMvvmPrism\\ProjManQuiz\\ChessApp\\ChessApp.Business\\ChessApp.Business.csproj": {
               "projectPath": "C:\\Users\\jj\\source\\repos\\WpfMvvmPrism\\ProjManQuiz\\ChessApp\\ChessApp.Business\\ChessApp.Business.csproj"
+            },
+            "C:\\Users\\jj\\source\\repos\\WpfMvvmPrism\\ProjManQuiz\\ChessApp\\ChessApp.Core\\ChessApp.Core.csproj": {
+              "projectPath": "C:\\Users\\jj\\source\\repos\\WpfMvvmPrism\\ProjManQuiz\\ChessApp\\ChessApp.Core\\ChessApp.Core.csproj"
+            },
+            "C:\\Users\\jj\\source\\repos\\WpfMvvmPrism\\ProjManQuiz\\ChessApp\\ChessApp.Services.Interfaces\\ChessApp.Services.Interfaces.csproj": {
+              "projectPath": "C:\\Users\\jj\\source\\repos\\WpfMvvmPrism\\ProjManQuiz\\ChessApp\\ChessApp.Services.Interfaces\\ChessApp.Services.Interfaces.csproj"
             }
           }
         }

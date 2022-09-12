@@ -16,6 +16,8 @@ namespace ChessApp.Business
     {
         private IPiece?[,] _board;
 
+        public const string StartPosition = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR";
+
         public ChessBoard(IPiece?[,] board)
         {
             _board = board;

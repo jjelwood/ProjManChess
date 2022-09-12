@@ -37,3 +37,11 @@ C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp\bin\Debug\ne
 C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp\bin\Debug\net6.0-windows\SharpVectors.Rendering.Gdi.dll
 C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp\bin\Debug\net6.0-windows\SharpVectors.Rendering.Wpf.dll
 C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp\bin\Debug\net6.0-windows\SharpVectors.Runtime.Wpf.dll
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp\bin\Debug\net6.0-windows\ChessApp.Core.dll
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp\bin\Debug\net6.0-windows\ChessApp.Core.pdb
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp\bin\Debug\net6.0-windows\ChessApp.Services.dll
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp\bin\Debug\net6.0-windows\ChessApp.Services.Interfaces.dll
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp\bin\Debug\net6.0-windows\ChessApp.Services.Interfaces.pdb
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp\bin\Debug\net6.0-windows\ChessApp.Services.pdb
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp\bin\Debug\net6.0-windows\ChessApp.Menu.dll
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp\bin\Debug\net6.0-windows\ChessApp.Menu.pdb

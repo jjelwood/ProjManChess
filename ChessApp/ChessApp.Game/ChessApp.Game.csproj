@@ -10,5 +10,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ChessApp.Business\ChessApp.Business.csproj" />
+    <ProjectReference Include="..\ChessApp.Core\ChessApp.Core.csproj" />
+    <ProjectReference Include="..\ChessApp.Services.Interfaces\ChessApp.Services.Interfaces.csproj" />
   </ItemGroup>
 </Project>

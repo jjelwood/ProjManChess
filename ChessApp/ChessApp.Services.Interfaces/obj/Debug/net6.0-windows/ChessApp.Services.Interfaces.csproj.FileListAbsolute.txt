@@ -1,0 +1,17 @@
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp.Services.Interfaces\bin\Debug\net6.0-windows\ChessApp.Services.Interfaces.deps.json
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp.Services.Interfaces\bin\Debug\net6.0-windows\ChessApp.Services.Interfaces.dll
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp.Services.Interfaces\bin\Debug\net6.0-windows\ChessApp.Services.Interfaces.pdb
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp.Services.Interfaces\bin\Debug\net6.0-windows\ChessApp.Business.dll
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp.Services.Interfaces\bin\Debug\net6.0-windows\ChessApp.Core.dll
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp.Services.Interfaces\bin\Debug\net6.0-windows\ChessApp.Business.pdb
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp.Services.Interfaces\bin\Debug\net6.0-windows\ChessApp.Core.pdb
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp.Services.Interfaces\obj\Debug\net6.0-windows\ChessApp.Services.Interfaces.csproj.AssemblyReference.cache
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp.Services.Interfaces\obj\Debug\net6.0-windows\ChessApp.Services.Interfaces.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp.Services.Interfaces\obj\Debug\net6.0-windows\ChessApp.Services.Interfaces.AssemblyInfoInputs.cache
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp.Services.Interfaces\obj\Debug\net6.0-windows\ChessApp.Services.Interfaces.AssemblyInfo.cs
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp.Services.Interfaces\obj\Debug\net6.0-windows\ChessApp.Services.Interfaces.csproj.CoreCompileInputs.cache
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp.Services.Interfaces\obj\Debug\net6.0-windows\ChessApp.Services.Interfaces.csproj.CopyComplete
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp.Services.Interfaces\obj\Debug\net6.0-windows\ChessApp.Services.Interfaces.dll
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp.Services.Interfaces\obj\Debug\net6.0-windows\refint\ChessApp.Services.Interfaces.dll
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp.Services.Interfaces\obj\Debug\net6.0-windows\ChessApp.Services.Interfaces.pdb
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp.Services.Interfaces\obj\Debug\net6.0-windows\ref\ChessApp.Services.Interfaces.dll

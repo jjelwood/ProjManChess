@@ -16,6 +16,7 @@ namespace ChessApp.Tests
         [InlineData(3, 8_902)]
         [InlineData(4, 197_281)]
         [InlineData(5, 4_865_609)]
+        [InlineData(6, 119_060_324)]
         public void TestDepth(int depth, int expectedNumberOfBoards)
         {
             var game = new Game(new("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR", 8, 8));

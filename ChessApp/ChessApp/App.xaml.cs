@@ -1,4 +1,6 @@
-﻿using ChessApp.Game;
+﻿using ChessApp.Core;
+using ChessApp.Game;
+using ChessApp.Menu;
 using ChessApp.Views;
 using Prism.Ioc;
 using Prism.Modularity;
@@ -18,12 +20,13 @@ namespace ChessApp
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-
+            containerRegistry.RegisterSingleton<IApplicationCommands, ApplicationCommands>();
         }
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
             moduleCatalog.AddModule<GameModule>();
+            moduleCatalog.AddModule<MenuModule>();
         }
     }
 }

@@ -13,6 +13,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{B954
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChessApp.Game", "ChessApp.Game\ChessApp.Game.csproj", "{BA746EA6-C99F-4FE4-B611-B2D93481AF17}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessApp.Menu", "ChessApp.Menu\ChessApp.Menu.csproj", "{ADCDD505-24D1-455E-B74A-DBC5531A875B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessApp.Core", "ChessApp.Core\ChessApp.Core.csproj", "{41A1CFB9-0175-4A09-8258-B266CB021927}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{E311A225-850D-42E4-8109-89302802357B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessApp.Services", "ChessApp.Services\ChessApp.Services.csproj", "{765BA651-4C50-4D13-B90A-AA97E6DBBC53}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessApp.Services.Interfaces", "ChessApp.Services.Interfaces\ChessApp.Services.Interfaces.csproj", "{761F88E5-F78B-44E7-BFF5-D48D089F3D3E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,12 +45,31 @@ Global
 		{BA746EA6-C99F-4FE4-B611-B2D93481AF17}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA746EA6-C99F-4FE4-B611-B2D93481AF17}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA746EA6-C99F-4FE4-B611-B2D93481AF17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADCDD505-24D1-455E-B74A-DBC5531A875B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADCDD505-24D1-455E-B74A-DBC5531A875B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADCDD505-24D1-455E-B74A-DBC5531A875B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADCDD505-24D1-455E-B74A-DBC5531A875B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41A1CFB9-0175-4A09-8258-B266CB021927}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41A1CFB9-0175-4A09-8258-B266CB021927}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41A1CFB9-0175-4A09-8258-B266CB021927}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41A1CFB9-0175-4A09-8258-B266CB021927}.Release|Any CPU.Build.0 = Release|Any CPU
+		{765BA651-4C50-4D13-B90A-AA97E6DBBC53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{765BA651-4C50-4D13-B90A-AA97E6DBBC53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{765BA651-4C50-4D13-B90A-AA97E6DBBC53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{765BA651-4C50-4D13-B90A-AA97E6DBBC53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{761F88E5-F78B-44E7-BFF5-D48D089F3D3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{761F88E5-F78B-44E7-BFF5-D48D089F3D3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{761F88E5-F78B-44E7-BFF5-D48D089F3D3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{761F88E5-F78B-44E7-BFF5-D48D089F3D3E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{BA746EA6-C99F-4FE4-B611-B2D93481AF17} = {B954A13E-EA18-4042-999D-4E56DEC717DD}
+		{ADCDD505-24D1-455E-B74A-DBC5531A875B} = {B954A13E-EA18-4042-999D-4E56DEC717DD}
+		{765BA651-4C50-4D13-B90A-AA97E6DBBC53} = {E311A225-850D-42E4-8109-89302802357B}
+		{761F88E5-F78B-44E7-BFF5-D48D089F3D3E} = {E311A225-850D-42E4-8109-89302802357B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3F10E2E2-0F6C-44F2-94AB-F9AAC64DB27F}

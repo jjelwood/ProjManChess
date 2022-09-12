@@ -10,3 +10,6 @@ C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp.Business\obj
 C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp.Business\obj\Debug\net6.0-windows\refint\ChessApp.Business.dll
 C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp.Business\obj\Debug\net6.0-windows\ChessApp.Business.pdb
 C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp.Business\obj\Debug\net6.0-windows\ref\ChessApp.Business.dll
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp.Business\bin\Debug\net6.0-windows\ChessApp.Core.dll
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp.Business\bin\Debug\net6.0-windows\ChessApp.Core.pdb
+C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp.Business\obj\Debug\net6.0-windows\ChessApp.Business.csproj.CopyComplete
