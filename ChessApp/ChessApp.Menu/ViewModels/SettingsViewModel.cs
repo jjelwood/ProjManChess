@@ -23,7 +23,7 @@ namespace ChessApp.Menu.ViewModels
 
         public static Dictionary<string, (string BoardColourOne, string BoardColourTwo)> BoardThemes => Config.boardThemes;
 
-        private KeyValuePair<string, (string BoardColourOne, string BoardColourTwo)> _selectedBoardTheme;
+        private KeyValuePair<string, (string BoardColourOne, string BoardColourTwo)> _selectedBoardTheme = Config.DefaultTheme;
         public KeyValuePair<string, (string BoardColourOne, string BoardColourTwo)> SelectedBoardTheme
         {
             get { return _selectedBoardTheme; }
