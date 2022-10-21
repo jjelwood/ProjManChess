@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "LHCMB2SmUd61tMGn2aiM+4sOc+t0R+7y3je/9XO6CAAVUCcujwIQLERU3Uvkh36TL99TjUPlFDAcXzFQ7t1kZw==",
+  "dgSpecHash": "tx3pOxYZPy/uNL2pUbLh/y7+gLPfGFoMkGSKmBLyizwkuIBYear7O4LQtej8bV3ElwJ3hs/Owy21CgoTrA7/Rg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\jj\\source\\repos\\WpfMvvmPrism\\ProjManQuiz\\ChessApp\\ChessApp.Services\\ChessApp.Services.csproj",
+  "projectFilePath": "C:\\Users\\jj\\source\\repos\\WpfMvvmPrism\\ChessApp\\ChessApp\\ChessApp.Services\\ChessApp.Services.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jj\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\jj\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",

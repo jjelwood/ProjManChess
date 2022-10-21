@@ -2,6 +2,30 @@
   "version": 3,
   "targets": {
     "net6.0-windows7.0": {
+      "MaterialDesignColors/2.0.9": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/MaterialDesignColors.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/MaterialDesignColors.dll": {}
+        }
+      },
+      "MaterialDesignThemes/4.6.1": {
+        "type": "package",
+        "dependencies": {
+          "MaterialDesignColors": "[2.0.9, 3.0.0)"
+        },
+        "compile": {
+          "lib/net6.0/MaterialDesignThemes.Wpf.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/MaterialDesignThemes.Wpf.dll": {}
+        },
+        "build": {
+          "build/MaterialDesignThemes.targets": {}
+        }
+      },
       "Microsoft.NETCore.Platforms/1.1.0": {
         "type": "package",
         "compile": {
@@ -146,6 +170,66 @@
     }
   },
   "libraries": {
+    "MaterialDesignColors/2.0.9": {
+      "sha512": "b4tdvxPZUCKCpxeCNFnF/+2Hug2cd+/SUGYCt+RXRRrobFYZkZQsIjlbsTGy5Hup9yPMMxqFSEXGRIxCm2JZUA==",
+      "type": "package",
+      "path": "materialdesigncolors/2.0.9",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "images/MaterialDesignColors.Icon.png",
+        "lib/net462/MaterialDesignColors.dll",
+        "lib/net462/MaterialDesignColors.pdb",
+        "lib/net6.0/MaterialDesignColors.dll",
+        "lib/net6.0/MaterialDesignColors.pdb",
+        "lib/netcoreapp3.1/MaterialDesignColors.dll",
+        "lib/netcoreapp3.1/MaterialDesignColors.pdb",
+        "materialdesigncolors.2.0.9.nupkg.sha512",
+        "materialdesigncolors.nuspec"
+      ]
+    },
+    "MaterialDesignThemes/4.6.1": {
+      "sha512": "Yx3RxIqkwoe1rYxoUZ2iH1YdCly+dA8YAQJ5uknsUVhyVd1rgiXEn6fmtsovGaqKRZwUXGHnh4w7kRagxa8TCg==",
+      "type": "package",
+      "path": "materialdesignthemes/4.6.1",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "build/MaterialDesignThemes.targets",
+        "build/Resources/Roboto/Roboto-Black.ttf",
+        "build/Resources/Roboto/Roboto-BlackItalic.ttf",
+        "build/Resources/Roboto/Roboto-Bold.ttf",
+        "build/Resources/Roboto/Roboto-BoldItalic.ttf",
+        "build/Resources/Roboto/Roboto-Italic.ttf",
+        "build/Resources/Roboto/Roboto-Light.ttf",
+        "build/Resources/Roboto/Roboto-LightItalic.ttf",
+        "build/Resources/Roboto/Roboto-Medium.ttf",
+        "build/Resources/Roboto/Roboto-MediumItalic.ttf",
+        "build/Resources/Roboto/Roboto-Regular.ttf",
+        "build/Resources/Roboto/Roboto-Thin.ttf",
+        "build/Resources/Roboto/Roboto-ThinItalic.ttf",
+        "build/Resources/Roboto/RobotoCondensed-Bold.ttf",
+        "build/Resources/Roboto/RobotoCondensed-BoldItalic.ttf",
+        "build/Resources/Roboto/RobotoCondensed-Italic.ttf",
+        "build/Resources/Roboto/RobotoCondensed-Light.ttf",
+        "build/Resources/Roboto/RobotoCondensed-LightItalic.ttf",
+        "build/Resources/Roboto/RobotoCondensed-Regular.ttf",
+        "images/MaterialDesignThemes.Icon.png",
+        "lib/net462/MaterialDesignThemes.Wpf.dll",
+        "lib/net462/MaterialDesignThemes.Wpf.pdb",
+        "lib/net462/MaterialDesignThemes.Wpf.xml",
+        "lib/net6.0/MaterialDesignThemes.Wpf.dll",
+        "lib/net6.0/MaterialDesignThemes.Wpf.pdb",
+        "lib/net6.0/MaterialDesignThemes.Wpf.xml",
+        "lib/netcoreapp3.1/MaterialDesignThemes.Wpf.dll",
+        "lib/netcoreapp3.1/MaterialDesignThemes.Wpf.pdb",
+        "lib/netcoreapp3.1/MaterialDesignThemes.Wpf.xml",
+        "materialdesignthemes.4.6.1.nupkg.sha512",
+        "materialdesignthemes.nuspec",
+        "tools/VisualStudioToolsManifest.xml"
+      ]
+    },
     "Microsoft.NETCore.Platforms/1.1.0": {
       "sha512": "kz0PEW2lhqygehI/d6XsPCQzD7ff7gUJaVGPVETX611eadGsA3A877GdSlU0LRVMCTH/+P3o2iDTak+S08V2+A==",
       "type": "package",
@@ -508,6 +592,7 @@
       "ChessApp.Business >= 1.0.0",
       "ChessApp.Core >= 1.0.0",
       "ChessApp.Services.Interfaces >= 1.0.0",
+      "MaterialDesignThemes >= 4.6.1",
       "Prism.Wpf >= 8.1.97",
       "SharpVectors >= 1.8.0"
     ]
@@ -519,11 +604,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jj\\source\\repos\\WpfMvvmPrism\\ProjManQuiz\\ChessApp\\ChessApp.Game\\ChessApp.Game.csproj",
+      "projectUniqueName": "C:\\Users\\jj\\source\\repos\\WpfMvvmPrism\\ChessApp\\ChessApp\\ChessApp.Game\\ChessApp.Game.csproj",
       "projectName": "ChessApp.Game",
-      "projectPath": "C:\\Users\\jj\\source\\repos\\WpfMvvmPrism\\ProjManQuiz\\ChessApp\\ChessApp.Game\\ChessApp.Game.csproj",
+      "projectPath": "C:\\Users\\jj\\source\\repos\\WpfMvvmPrism\\ChessApp\\ChessApp\\ChessApp.Game\\ChessApp.Game.csproj",
       "packagesPath": "C:\\Users\\jj\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jj\\source\\repos\\WpfMvvmPrism\\ProjManQuiz\\ChessApp\\ChessApp.Game\\obj\\",
+      "outputPath": "C:\\Users\\jj\\source\\repos\\WpfMvvmPrism\\ChessApp\\ChessApp\\ChessApp.Game\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -544,14 +629,14 @@
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
           "projectReferences": {
-            "C:\\Users\\jj\\source\\repos\\WpfMvvmPrism\\ProjManQuiz\\ChessApp\\ChessApp.Business\\ChessApp.Business.csproj": {
-              "projectPath": "C:\\Users\\jj\\source\\repos\\WpfMvvmPrism\\ProjManQuiz\\ChessApp\\ChessApp.Business\\ChessApp.Business.csproj"
+            "C:\\Users\\jj\\source\\repos\\WpfMvvmPrism\\ChessApp\\ChessApp\\ChessApp.Business\\ChessApp.Business.csproj": {
+              "projectPath": "C:\\Users\\jj\\source\\repos\\WpfMvvmPrism\\ChessApp\\ChessApp\\ChessApp.Business\\ChessApp.Business.csproj"
             },
-            "C:\\Users\\jj\\source\\repos\\WpfMvvmPrism\\ProjManQuiz\\ChessApp\\ChessApp.Core\\ChessApp.Core.csproj": {
-              "projectPath": "C:\\Users\\jj\\source\\repos\\WpfMvvmPrism\\ProjManQuiz\\ChessApp\\ChessApp.Core\\ChessApp.Core.csproj"
+            "C:\\Users\\jj\\source\\repos\\WpfMvvmPrism\\ChessApp\\ChessApp\\ChessApp.Core\\ChessApp.Core.csproj": {
+              "projectPath": "C:\\Users\\jj\\source\\repos\\WpfMvvmPrism\\ChessApp\\ChessApp\\ChessApp.Core\\ChessApp.Core.csproj"
             },
-            "C:\\Users\\jj\\source\\repos\\WpfMvvmPrism\\ProjManQuiz\\ChessApp\\ChessApp.Services.Interfaces\\ChessApp.Services.Interfaces.csproj": {
-              "projectPath": "C:\\Users\\jj\\source\\repos\\WpfMvvmPrism\\ProjManQuiz\\ChessApp\\ChessApp.Services.Interfaces\\ChessApp.Services.Interfaces.csproj"
+            "C:\\Users\\jj\\source\\repos\\WpfMvvmPrism\\ChessApp\\ChessApp\\ChessApp.Services.Interfaces\\ChessApp.Services.Interfaces.csproj": {
+              "projectPath": "C:\\Users\\jj\\source\\repos\\WpfMvvmPrism\\ChessApp\\ChessApp\\ChessApp.Services.Interfaces\\ChessApp.Services.Interfaces.csproj"
             }
           }
         }
@@ -566,6 +651,10 @@
       "net6.0-windows7.0": {
         "targetAlias": "net6.0-windows",
         "dependencies": {
+          "MaterialDesignThemes": {
+            "target": "Package",
+            "version": "[4.6.1, )"
+          },
           "Prism.Wpf": {
             "target": "Package",
             "version": "[8.1.97, )"

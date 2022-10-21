@@ -1,19 +1,23 @@
 ﻿using ChessApp.Core;
 using Prism.Commands;
 using Prism.Mvvm;
+using Prism.Regions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace ChessApp.Menu.ViewModels
 {
-    public class SettingsViewModel : BindableBase
+    public class SettingsViewModel : BindableBase, INavigationAware
     {
         private readonly IApplicationCommands _applicationCommands;
+        private readonly IRegionManager _regionManager;
 
-        public SettingsViewModel(IApplicationCommands applicationCommands)
+        public SettingsViewModel(IApplicationCommands applicationCommands, IRegionManager regionManager)
         {
             _applicationCommands = applicationCommands;
+            _regionManager = regionManager;
+            applicationCommands.SaveSettingsCommand.RegisterCommand(Close);
         }
 
         public IApplicationCommands ApplicationCommands
@@ -49,12 +53,42 @@ namespace ChessApp.Menu.ViewModels
         private DelegateCommand _setSettings;
         public DelegateCommand SetSettings => _setSettings ??= new DelegateCommand(ExecuteSetSettings);
 
+        private string _navigationSender;
+        public string NavigationSender
+        {
+            get { return _navigationSender; }
+            set { SetProperty(ref _navigationSender, value); }
+        }
+
         void ExecuteSetSettings()
         {
             Config.BoardTheme = SelectedBoardTheme.Value;
             Config.PieceSpriteName = SelectedPieceSpriteName;
             Config.BoardFlipsBetweenMoves = FlipBoardBetweenMoves;
             _applicationCommands.SaveSettingsCommand.Execute(null);
+        }
+
+        private DelegateCommand _close;
+        public DelegateCommand Close => _close ??= new DelegateCommand(ExecuteClose);
+
+        void ExecuteClose()
+        {
+            _regionManager.RequestNavigate("ContentRegion", NavigationSender);
+        }
+
+        public void OnNavigatedTo(NavigationContext navigationContext)
+        {
+            NavigationSender = navigationContext.Parameters.GetValue<string>("navigationSender");
+        }
+
+        public bool IsNavigationTarget(NavigationContext navigationContext)
+        {
+            return true;
+        }
+
+        public void OnNavigatedFrom(NavigationContext navigationContext)
+        {
+            
         }
     }
 }

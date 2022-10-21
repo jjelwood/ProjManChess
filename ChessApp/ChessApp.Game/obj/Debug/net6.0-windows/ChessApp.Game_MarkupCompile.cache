@@ -4,17 +4,17 @@
 library
 C#
 .cs
-C:\Users\jj\source\repos\WpfMvvmPrism\ProjManQuiz\ChessApp\ChessApp.Game\obj\Debug\net6.0-windows\
+C:\Users\jj\source\repos\WpfMvvmPrism\ChessApp\ChessApp\ChessApp.Game\obj\Debug\net6.0-windows\
 ChessApp.Game
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 
-1-1332037377
+2-178573654
 
-41020479935
-208-211004683
-Views\Board.xaml;
+6-20815454
+210-1972771986
+Views\Board.xaml;Views\GameWindow.xaml;
 
 False
 

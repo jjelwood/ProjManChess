@@ -26,6 +26,7 @@ namespace ChessApp.Game.ViewModels
         {
             _game = new(new(ChessBoard.StartPosition, 8, 8));
             applicationCommands.SaveSettingsCommand.RegisterCommand(UpdateConfig);
+            applicationCommands.NewGame.RegisterCommand(NewGame);
             UpdateConfig.Execute();
         }
 
@@ -37,6 +38,19 @@ namespace ChessApp.Game.ViewModels
         {
             get { return _game; }
             set { SetProperty(ref _game, value); }
+        }
+
+        private DelegateCommand _newGame;
+        public DelegateCommand NewGame => _newGame ??= new DelegateCommand(ExecuteNewGame);
+
+        void ExecuteNewGame()
+        {
+            _game = new(new(ChessBoard.StartPosition, 8, 8));
+            isFlipped = false;
+            RaisePropertyChanged(nameof(MoveArray));
+            RaisePropertyChanged(nameof(JaggedArrayBoard));
+            RaisePropertyChanged(nameof(BoardColours));
+            SelectedPiece = null;
         }
 
         private DelegateCommand _updateConfig;

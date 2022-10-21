@@ -21,7 +21,8 @@ namespace ChessApp.Game
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            _regionManager.RegisterViewWithRegion<Board>("ContentRegion");
+            containerRegistry.RegisterForNavigation<GameWindow>();
+            _regionManager.RegisterViewWithRegion<Board>("BoardRegion");
         }
     }
 }

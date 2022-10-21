@@ -82,6 +82,11 @@ namespace ChessApp.Business
             _board = board;
         }
 
+        public bool IsDefault()
+        {
+            return Board == new ChessBoard(StartPosition, 8, 8).Board;
+        }
+
         /// <summary>
         /// Lowers the timer of each enpassant square by 1 and gets rid of squares with a timer of 0
         /// </summary>

@@ -16,12 +16,13 @@ namespace ChessApp.Menu
 
         public void OnInitialized(IContainerProvider containerProvider)
         {
-
+            _regionManager.RequestNavigate("ContentRegion", nameof(Index));
         }
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            _regionManager.RegisterViewWithRegion<Settings>("SettingsRegion");
+            containerRegistry.RegisterForNavigation<Index>();
+            containerRegistry.RegisterForNavigation<Settings>();
         }
     }
 }

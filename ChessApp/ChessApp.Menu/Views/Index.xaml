@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="ChessApp.Menu.Views.Index"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             prism:ViewModelLocator.AutoWireViewModel="True">
+    <Grid>
+        <Grid Margin="0 50"
+              MaxWidth="835"
+              MaxHeight="525">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="CHESS" 
+                       FontSize="72"
+                       TextAlignment="Center"
+                       VerticalAlignment="Center"
+                       Grid.ColumnSpan="1"
+                       Grid.RowSpan="3"/>
+
+            <Button Content="Continue Game" 
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    Height="80"
+                    Width="200"
+                    Command="{Binding ContinueGame}"/>
+            <Button Content="Start new game"
+                    Grid.Column="1"
+                    Command="{Binding StartNewGame}"
+                    Height="80"
+                    Width="200"
+                    Grid.Row="1"/>
+            <Button Content="Settings"
+                    Grid.Row="2"
+                    Command="{Binding NavigateToSettings}"
+                    Height="80"
+                    Width="200"
+                    Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                    Grid.Column="1"/>
+        </Grid>
+    </Grid>
+</UserControl>

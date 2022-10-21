@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "NsnuHknDJWvU60nLI2wva2utF43po7aqv63IE/glx1f4UjCzZ6ZxxFq4u+g62ba5KCXlh4DYgTXgrh0AVoWssw==",
+  "dgSpecHash": "pwi51W9spZX8MOFdTEb6VnD0McNmbqfR3UMbBBAkeQlnUWTJsJ9YXcxMd3YaIimr1ccEz5RpM7WgtKSd04gReA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\jj\\source\\repos\\WpfMvvmPrism\\ProjManQuiz\\ChessApp\\ChessApp\\ChessApp.csproj",
+  "projectFilePath": "C:\\Users\\jj\\source\\repos\\WpfMvvmPrism\\ChessApp\\ChessApp\\ChessApp\\ChessApp.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\jj\\.nuget\\packages\\materialdesigncolors\\2.0.9\\materialdesigncolors.2.0.9.nupkg.sha512",
+    "C:\\Users\\jj\\.nuget\\packages\\materialdesignthemes\\4.6.1\\materialdesignthemes.4.6.1.nupkg.sha512",
     "C:\\Users\\jj\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\jj\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\jj\\.nuget\\packages\\microsoft.xaml.behaviors.wpf\\1.1.31\\microsoft.xaml.behaviors.wpf.1.1.31.nupkg.sha512",
