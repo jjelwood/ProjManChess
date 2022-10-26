@@ -79,6 +79,8 @@ namespace ChessApp.Menu.ViewModels
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
             NavigationSender = navigationContext.Parameters.GetValue<string>("navigationSender");
+            FlipBoardBetweenMoves = Config.BoardFlipsBetweenMoves;
+            SelectedPieceSpriteName = Config.PieceSpriteName;
         }
 
         public bool IsNavigationTarget(NavigationContext navigationContext)

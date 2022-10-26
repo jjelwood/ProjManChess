@@ -16,5 +16,5 @@ TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 210-1972771986
 Views\Board.xaml;Views\GameWindow.xaml;
 
-True
+False
 

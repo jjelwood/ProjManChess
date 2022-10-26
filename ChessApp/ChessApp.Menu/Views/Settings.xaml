@@ -59,7 +59,7 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
 
-            <TextBlock Text="Flip Board"
+            <TextBlock Text="Board Flips Between Moves"
                    Grid.Row="2"
                    TextAlignment="Left"
                    VerticalAlignment="Center"

@@ -21,6 +21,7 @@
             </Grid.RowDefinitions>
 
             <TextBlock Text="CHESS" 
+                       Margin="100 0 0 0"
                        FontSize="72"
                        TextAlignment="Center"
                        VerticalAlignment="Center"
