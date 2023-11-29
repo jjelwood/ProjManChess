@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "pwi51W9spZX8MOFdTEb6VnD0McNmbqfR3UMbBBAkeQlnUWTJsJ9YXcxMd3YaIimr1ccEz5RpM7WgtKSd04gReA==",
+  "dgSpecHash": "C6rEqvSt9YAhVfC+7N5x/W5o7bbMnrCKQSJPFc4r4iQ+EQzzU6eP3QRuehr0h0rCkF5bqcEmwSG4IWl3+/sTKQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\jj\\source\\repos\\WpfMvvmPrism\\ChessApp\\ChessApp\\ChessApp\\ChessApp.csproj",
+  "projectFilePath": "C:\\Users\\jj\\Programming\\source\\repos\\WpfMvvmPrism\\ChessApp\\ChessApp\\ChessApp\\ChessApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jj\\.nuget\\packages\\materialdesigncolors\\2.0.9\\materialdesigncolors.2.0.9.nupkg.sha512",
     "C:\\Users\\jj\\.nuget\\packages\\materialdesignthemes\\4.6.1\\materialdesignthemes.4.6.1.nupkg.sha512",

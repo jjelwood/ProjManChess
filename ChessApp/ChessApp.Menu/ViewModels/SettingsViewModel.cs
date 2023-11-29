@@ -25,10 +25,10 @@ namespace ChessApp.Menu.ViewModels
             get { return _applicationCommands; }
         }
 
-        public static Dictionary<string, (string BoardColourOne, string BoardColourTwo)> BoardThemes => Config.boardThemes;
+        public static Dictionary<string, ColourPair> BoardThemes => Config.boardThemes;
 
-        private KeyValuePair<string, (string BoardColourOne, string BoardColourTwo)> _selectedBoardTheme = Config.DefaultTheme;
-        public KeyValuePair<string, (string BoardColourOne, string BoardColourTwo)> SelectedBoardTheme
+        private KeyValuePair<string, ColourPair> _selectedBoardTheme = Config.DefaultTheme;
+        public KeyValuePair<string, ColourPair> SelectedBoardTheme
         {
             get { return _selectedBoardTheme; }
             set { SetProperty(ref _selectedBoardTheme, value); }

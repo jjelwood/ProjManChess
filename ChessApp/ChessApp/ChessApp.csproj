@@ -5,6 +5,48 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="ChessApp.Assets\**" />
+    <Compile Remove="ChessApp.Business\**" />
+    <Compile Remove="ChessApp.ConsoleTesting\**" />
+    <Compile Remove="ChessApp.Core\**" />
+    <Compile Remove="ChessApp.Game\**" />
+    <Compile Remove="ChessApp.Menu\**" />
+    <Compile Remove="ChessApp.Services.Interfaces\**" />
+    <Compile Remove="ChessApp.Services\**" />
+    <Compile Remove="ChessApp.Tests\**" />
+    <Compile Remove="ChessApp\**" />
+    <EmbeddedResource Remove="ChessApp.Assets\**" />
+    <EmbeddedResource Remove="ChessApp.Business\**" />
+    <EmbeddedResource Remove="ChessApp.ConsoleTesting\**" />
+    <EmbeddedResource Remove="ChessApp.Core\**" />
+    <EmbeddedResource Remove="ChessApp.Game\**" />
+    <EmbeddedResource Remove="ChessApp.Menu\**" />
+    <EmbeddedResource Remove="ChessApp.Services.Interfaces\**" />
+    <EmbeddedResource Remove="ChessApp.Services\**" />
+    <EmbeddedResource Remove="ChessApp.Tests\**" />
+    <EmbeddedResource Remove="ChessApp\**" />
+    <None Remove="ChessApp.Assets\**" />
+    <None Remove="ChessApp.Business\**" />
+    <None Remove="ChessApp.ConsoleTesting\**" />
+    <None Remove="ChessApp.Core\**" />
+    <None Remove="ChessApp.Game\**" />
+    <None Remove="ChessApp.Menu\**" />
+    <None Remove="ChessApp.Services.Interfaces\**" />
+    <None Remove="ChessApp.Services\**" />
+    <None Remove="ChessApp.Tests\**" />
+    <None Remove="ChessApp\**" />
+    <Page Remove="ChessApp.Assets\**" />
+    <Page Remove="ChessApp.Business\**" />
+    <Page Remove="ChessApp.ConsoleTesting\**" />
+    <Page Remove="ChessApp.Core\**" />
+    <Page Remove="ChessApp.Game\**" />
+    <Page Remove="ChessApp.Menu\**" />
+    <Page Remove="ChessApp.Services.Interfaces\**" />
+    <Page Remove="ChessApp.Services\**" />
+    <Page Remove="ChessApp.Tests\**" />
+    <Page Remove="ChessApp\**" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="MaterialDesignColors" Version="2.0.9" />
     <PackageReference Include="MaterialDesignThemes" Version="4.6.1" />
     <PackageReference Include="Prism.Unity" Version="8.1.97" />

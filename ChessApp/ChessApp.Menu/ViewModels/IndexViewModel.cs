@@ -21,8 +21,8 @@ namespace ChessApp.Menu.ViewModels
             _applicationCommands = applicationCommands;
         }
 
-        public string Colour1 => Config.BoardTheme.BoardColourOne;
-        public string Colour2 => Config.BoardTheme.BoardColourTwo;
+        public string Colour1 => Config.BoardTheme.Colour1;
+        public string Colour2 => Config.BoardTheme.Colour2;
         public bool gameIsDefault = false;
 
         private DelegateCommand _navigateToSettings;

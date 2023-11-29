@@ -58,8 +58,8 @@ namespace ChessApp.Game.ViewModels
 
         void ExecuteUpdateConfig()
         {
-            boardColour1 = Config.BoardTheme.BoardColourTwo;
-            boardColour2 = Config.BoardTheme.BoardColourOne;
+            boardColour1 = Config.BoardTheme.Colour1;
+            boardColour2 = Config.BoardTheme.Colour2;
             RaisePropertyChanged(nameof(BoardColours));
             RaisePropertyChanged(nameof(JaggedArrayBoard));
         }
@@ -115,7 +115,7 @@ namespace ChessApp.Game.ViewModels
                     for (int j = 0; j < Board.Columns; j++)
                     {
                         var column = (!(isFlipped && Config.BoardFlipsBetweenMoves)) ? j : Board.Columns - 1 - j;
-                        result[row][column] = i % 2 == 0 ^ j % 2 == 0 ? boardColour1 : boardColour2;
+                        result[row][column] = i % 2 == 0 ^ j % 2 == 0 ? boardColour2 : boardColour1;
                     }
                 }
                 return result;

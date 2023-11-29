@@ -4,7 +4,7 @@
 library
 C#
 .cs
-C:\Users\jj\source\repos\WpfMvvmPrism\ChessApp\ChessApp\ChessApp.Game\obj\Debug\net6.0-windows\
+C:\Users\jj\Programming\source\repos\WpfMvvmPrism\ChessApp\ChessApp\ChessApp.Game\obj\Debug\net6.0-windows\
 ChessApp.Game
 none
 false
@@ -13,7 +13,7 @@ TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 2-178573654
 
 6-20815454
-210-1972771986
+2101927668834
 Views\Board.xaml;Views\GameWindow.xaml;
 
 False

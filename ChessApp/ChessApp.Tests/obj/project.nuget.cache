@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "BfHDpGWi2fXZXpKYQdIo9MU+5ulruculrVbdhDVsqaRfjo4Itg6puBrTxEeSF/WGOeJ9YZMfsPDDi9gKfWOqVQ==",
+  "dgSpecHash": "d+Wm1STBRJwuTOrgF+rjeNmaVQVqe7LwugS+PHDjfaO8YLd3ZIp3aAzYPC5j9oh2MneE8Cb0gqAepMQjAUh4eQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\jj\\source\\repos\\WpfMvvmPrism\\ChessApp\\ChessApp\\ChessApp.Tests\\ChessApp.Tests.csproj",
+  "projectFilePath": "C:\\Users\\jj\\Programming\\source\\repos\\WpfMvvmPrism\\ChessApp\\ChessApp\\ChessApp.Tests\\ChessApp.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jj\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",
     "C:\\Users\\jj\\.nuget\\packages\\microsoft.codecoverage\\17.2.0\\microsoft.codecoverage.17.2.0.nupkg.sha512",

@@ -1,7 +1,7 @@
 ﻿<UserControl x:Class="ChessApp.Menu.Views.Settings"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:prism="http://prismlibrary.com/"             
+             xmlns:prism="http://prismlibrary.com/" xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
              prism:ViewModelLocator.AutoWireViewModel="True">
     <Grid Width="450" Height="300">
         <Grid.RowDefinitions>
@@ -38,7 +38,25 @@
                   Grid.Column="1">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding Key}"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="{Binding Key}"/>
+
+                            <Rectangle Fill="{Binding Value.Colour1}" 
+                                       Height="20" 
+                                       Width="20"
+                                       Grid.Column="1"/>
+                            <Rectangle Fill="{Binding Value.Colour2}" 
+                                       Height="20" 
+                                       Width="20"
+                                       Grid.Column="2"/>
+                        </Grid>
+                        
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
@@ -51,13 +69,7 @@
             <ComboBox ItemsSource="{Binding PieceSpriteNames}"
                   Grid.Row="1"
                   Grid.Column="1"
-                  SelectedItem="{Binding SelectedPieceSpriteName}">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding}"/>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
+                  SelectedItem="{Binding SelectedPieceSpriteName}"/>
 
             <TextBlock Text="Board Flips Between Moves"
                    Grid.Row="2"

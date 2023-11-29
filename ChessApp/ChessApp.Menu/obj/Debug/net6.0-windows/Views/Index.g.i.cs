@@ -61,7 +61,7 @@ namespace ChessApp.Menu.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/ChessApp.Menu;V1.0.0.0;component/views/index.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/ChessApp.Menu;component/views/index.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Views\Index.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
